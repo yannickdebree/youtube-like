@@ -1,13 +1,9 @@
-import { Uid } from './Uid';
+import { Page } from './Page';
 
 export class Video {
     private title: string;
 
-    constructor(private uid: Uid) { }
-
-    getUid() {
-        return this.uid;
-    }
+    constructor(private page: Page) { }
 
     getTitle() {
         return this.title;
