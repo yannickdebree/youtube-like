@@ -5,7 +5,7 @@ import { CreateAccountDTO } from "./CreateAccountDTO";
 
 @Service()
 export class AccountsService {
-    accounts = new Array<Account>();
+    private accounts = new Array<Account>();
 
     findByEmail(email: Email) {
         return this.accounts.find(account => account.getEmail().isEquals(email))

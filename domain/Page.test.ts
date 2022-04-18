@@ -5,7 +5,7 @@ import { Password } from "./Password";
 import { Video } from './Video';
 
 describe(Page.name, () => {
-    const page = new Page(new Account(new Email("test@test.com"), new Password("$testtest")));
+    const page = new Page(new Account(new Email("test@test.com"), new Password("$testtest")), "Name");
 
     it('Can upload a video', () => {
         new Video(page);

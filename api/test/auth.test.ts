@@ -85,6 +85,7 @@ describe('auth (REST)', () => {
                         password: '$testtest'
                     }).expect(200).then(({ body }) => {
                         expect(body.data.email).toBe("test@test.com");
+                        expect(body.data.accessToken).toBeDefined();
                         done()
                     });
                 });

@@ -13,16 +13,16 @@ describe(Account.name, () => {
     const account = new Account(email, password);
 
     it('Can create a page', () => {
-        new Page(account);
+        new Page(account, 'Name');
     });
 
     it('Can react to a video', () => {
-        const video = new Video(new Page(account));
+        const video = new Video(new Page(account, 'Name'));
         new Reaction(video, account, 'like');
     });
 
     it('Can comment a video', () => {
-        const video = new Video(new Page(account));
+        const video = new Video(new Page(account, 'Name'));
 
         try {
             new VideoComment(video, account, '')

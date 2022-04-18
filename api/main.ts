@@ -1,10 +1,6 @@
-import { config } from 'dotenv';
 import app from './src/app';
+import { API_PORT } from './src/utils/environment';
 
-config();
-
-const PORT = process.env.API_PORT;
-
-app.listen(PORT, () => {
-    console.log(`API ready as port ${PORT}`);
+app.listen(API_PORT, () => {
+    console.log(`API ready as port ${API_PORT}`);
 });

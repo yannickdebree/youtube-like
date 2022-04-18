@@ -2,7 +2,7 @@ import { Service } from "typedi";
 import { EmailFormatError, PasswordFormatError } from "../../../domain";
 import { ControllerParams, Response } from "../routing";
 import { UnknowSignInMethodError } from "../utils/errors";
-import { EMAIL_FORMAT_ERROR, PASSWORD_FORMAT_ERROR, UNAUTHORIZED, UNKNOWN_SIGN_IN_METHOD } from "../utils/http-messages";
+import { EMAIL_FORMAT_ERROR, PASSWORD_FORMAT_ERROR, UNKNOWN_SIGN_IN_METHOD } from "../utils/http-messages";
 import { AuthService } from "./AuthService";
 import { SignInDTO } from "./SignInDTO";
 
@@ -15,23 +15,18 @@ export class AuthController {
     signIn({ context }: ControllerParams) {
         try {
             const dto = new SignInDTO(context.request.body);
-            const account = this.authService.signIn(dto);
+            const payload = this.authService.signIn(dto);
 
-            if (!account) {
+            if (!payload) {
                 return new Response({
-                    status: 401,
-                    body: {
-                        message: UNAUTHORIZED
-                    }
+                    status: 401
                 });
             }
 
             return new Response({
                 status: 200,
                 body: {
-                    data: {
-                        email: account?.getEmail().getValue()
-                    }
+                    data: payload
                 }
             });
         } catch (err) {
