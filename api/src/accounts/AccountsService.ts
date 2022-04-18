@@ -18,6 +18,7 @@ export class AccountsService {
             throw new EmailEvenUsedError();
         }
 
+        // TODO: Encrypt password with hashing function
         const account = new Account(email, password);
         this.accounts.push(account);
     }

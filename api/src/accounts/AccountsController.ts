@@ -1,7 +1,6 @@
-import { Context } from 'koa';
 import { Service } from 'typedi';
 import { EmailFormatError, PasswordFormatError } from '../../../domain';
-import { parseBody } from '../utils';
+import { ControllerParams, Response } from '../routing';
 import { EmailEvenUsedError } from '../utils/errors';
 import { EMAIl_EVEN_USED, EMAIL_FORMAT_ERROR, PASSWORD_FORMAT_ERROR } from '../utils/http-messages';
 import { AccountsService } from './AccountsService';
@@ -13,28 +12,34 @@ export class AccountsController {
         public accountsService: AccountsService
     ) { }
 
-    create(ctx: Context) {
+    create({ context }: ControllerParams) {
         try {
-            const dto = new CreateAccountDTO(ctx.request.body);
+            const dto = new CreateAccountDTO(context.request.body);
             this.accountsService.create(dto);
-            ctx.response.status = 201;
+            return new Response({ status: 201 });
         } catch (err) {
             if (err instanceof EmailFormatError) {
-                ctx.response.status = 422;
-                ctx.body = parseBody({
-                    message: EMAIL_FORMAT_ERROR
-                })
+                return new Response({
+                    status: 422,
+                    body: {
+                        message: EMAIL_FORMAT_ERROR,
+                    }
+                });
             }
             if (err instanceof PasswordFormatError) {
-                ctx.response.status = 422;
-                ctx.body = parseBody({
-                    message: PASSWORD_FORMAT_ERROR
+                return new Response({
+                    status: 422,
+                    body: {
+                        message: PASSWORD_FORMAT_ERROR
+                    }
                 });
             }
             if (err instanceof EmailEvenUsedError) {
-                ctx.response.status = 422;
-                ctx.body = parseBody({
-                    message: EMAIl_EVEN_USED
+                return new Response({
+                    status: 422,
+                    body: {
+                        message: EMAIl_EVEN_USED
+                    }
                 });
             }
         }

@@ -3,7 +3,7 @@ dr := $(dc) run --rm
 
 .PHONY: shell-api
 shell-api:
-	$(dr) api bash
+	$(dr) --no-deps api bash
 
 .PHONY: serve
 serve:

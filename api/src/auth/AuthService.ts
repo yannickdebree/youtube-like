@@ -11,6 +11,7 @@ export class AuthService {
     signIn(dto: SignInDTO) {
         if (!!dto.email) {
             const accountByEmail = this.accountsService.findByEmail(dto.email);
+            // TODO: compare passwords with hashing function
             if (accountByEmail?.getPassword().getValue() === dto.password?.getValue()) {
                 return accountByEmail;
             }
