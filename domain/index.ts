@@ -4,3 +4,5 @@ export * from './errors'
 export * from './Page'
 export * from './Password'
 export * from './Uid'
+export * from './Video'
+

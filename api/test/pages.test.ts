@@ -32,7 +32,7 @@ describe('pages (REST)', () => {
                         .then(({ body }) => {
                             request(app.callback())
                                 .post('/pages')
-                                .set('Authorization', body.data.accessToken)
+                                .set('Authorization', `Bearer ${body.data.accessToken}`)
                                 .send()
                                 .expect(422)
                                 .then(({ body }) => {
@@ -60,7 +60,7 @@ describe('pages (REST)', () => {
                         .then(({ body }) => {
                             request(app.callback())
                                 .post('/pages')
-                                .set('Authorization', body.data.accessToken)
+                                .set('Authorization', `Bearer ${body.data.accessToken}`)
                                 .send({ name: '' })
                                 .expect(422)
                                 .then(({ body }) => {
@@ -88,7 +88,7 @@ describe('pages (REST)', () => {
                         .then(({ body }) => {
                             request(app.callback())
                                 .post('/pages')
-                                .set('Authorization', body.data.accessToken)
+                                .set('Authorization', `Bearer ${body.data.accessToken}`)
                                 .send({ name: 'My name' })
                                 .expect(201)
                                 .then(({ body }) => {
@@ -99,6 +99,8 @@ describe('pages (REST)', () => {
                 })
         })
     })
+
+    it.todo('Can access to a page')
 
     it.todo('Can update a page')
 

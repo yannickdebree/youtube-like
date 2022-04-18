@@ -13,15 +13,15 @@ export class ControllerResolver {
     constructor(private readonly accountsService: AccountsService) { }
 
     run<T>(
-        controllerHandler: (params: ControllerParams) => Response<T> | undefined
+        controllerHandler: (params: ControllerParams) => Promise<Response<T> | undefined> | Response<T> | undefined
     ) {
-        return (context: Context, next: Next) => {
+        return async (context: Context, next: Next) => {
             let response = new Response({ status: 500 })
 
             const connectedAccount = this.getConnectedAccount(context)
 
             try {
-                const responseFromController = controllerHandler({
+                const responseFromController = await controllerHandler({
                     context,
                     connectedAccount,
                 })
@@ -50,7 +50,7 @@ export class ControllerResolver {
         const authorization = context.headers.authorization
         if (authorization) {
             let payload = jwt.verify(
-                authorization,
+                authorization.replace('Bearer ', ''),
                 API_SECRET
             ) as jwt.JwtPayload
             const email = payload.email.value

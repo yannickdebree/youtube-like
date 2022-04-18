@@ -16,9 +16,9 @@ describe(Page.name, () => {
 
     it('Can update a video', () => {
         const video = new Video(page)
-        const newTitle = 'New title'
-        video.setTitle(newTitle)
-        expect(video.getTitle()).toEqual(newTitle)
+        const newName = 'New title'
+        video.setName(newName)
+        expect(video.getName()).toEqual(newName)
     })
 
     it.todo('Can remove a video')

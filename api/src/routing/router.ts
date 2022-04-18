@@ -3,13 +3,15 @@ import Container from 'typedi'
 import { AccountsController } from '../accounts'
 import { AuthController } from '../auth'
 import { PagesController } from '../pages'
+import { VideosController } from '../videos'
 import { ControllerResolver } from './ControllerResolver'
 
 const controllerRunner = Container.get(ControllerResolver)
 
 const accountsController = Container.get(AccountsController)
 const authController = Container.get(AuthController)
-const pagesController = Container.get(PagesController)
+const pagesController = Container.get(PagesController);
+const videosController = Container.get(VideosController);
 
 export const router = new Router()
     .post(
@@ -23,4 +25,4 @@ export const router = new Router()
     .post(
         '/pages',
         controllerRunner.run((params) => pagesController.create(params))
-    )
+).post('/pages/:uid/videos', controllerRunner.run(params => videosController.upload(params)));

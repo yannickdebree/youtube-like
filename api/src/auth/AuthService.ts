@@ -14,7 +14,7 @@ export class AuthService {
             const accountByEmail = this.accountsService.findByEmail(email)
             // TODO: compare passwords with hashing function
             if (
-                accountByEmail?.getPassword().getValue() ===
+                accountByEmail?.getPassword()?.getValue() ===
                 dto.password?.getValue()
             ) {
                 const accessToken = jwt.sign(

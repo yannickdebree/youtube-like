@@ -15,6 +15,10 @@ export class Page {
         return this.uid
     }
 
+    getAccount() {
+        return this.account;
+    }
+
     setUid(uid: Uid) {
         this.uid = uid
     }

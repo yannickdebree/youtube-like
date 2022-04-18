@@ -1,15 +1,35 @@
-import { Page } from './Page'
+import { Page } from './Page';
+import { Uid } from './Uid';
 
 export class Video {
-    private title?: string
+    private uid?: Uid;
+    private path?: string;
+    private name?: string;
+    private description?: string;
 
-    constructor(private page: Page) {}
+    constructor(private page: Page) { }
 
-    getTitle() {
-        return this.title
+    getUid() {
+        return this.uid
     }
 
-    setTitle(title: string) {
-        this.title = title
+    getName() {
+        return this.name;
+    }
+
+    setUid(uid: Uid) {
+        this.uid = uid
+    }
+
+    setPath(path: string) {
+        this.path = path;
+    }
+
+    setName(name: string) {
+        this.name = name;
+    }
+
+    setDescription(description: string) {
+        this.description = description;
     }
 }

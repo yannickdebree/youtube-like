@@ -2,7 +2,7 @@ import { Service } from 'typedi'
 import { EmptyNameError } from '../../../domain'
 import { ControllerParams, Response } from '../routing'
 import { EMPTY_NAME } from '../utils/http-messages'
-import { PagesService } from './AccountsService'
+import { PagesService } from './PagesService'
 import { CreatePageDTO } from './CreatePageDTO'
 
 @Service()
@@ -20,7 +20,7 @@ export class PagesController {
                 account: connectedAccount,
             })
 
-            const uid = this.pagesService.create(dto)
+            const uid = this.pagesService.create(dto).getValue();
 
             return new Response({ status: 201, body: { data: { uid } } })
         } catch (err) {

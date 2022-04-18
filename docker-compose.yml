@@ -6,6 +6,7 @@ services:
         container_name: youtube-like-api
         command: yarn start:api
         working_dir: /usr/src/api
+        user: node
         volumes:
             - $PWD:/usr/src/api
         ports:
