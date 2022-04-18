@@ -17,12 +17,12 @@ describe(Account.name, () => {
     })
 
     it('Can react to a video', () => {
-        const video = new Video(new Page(account, 'Name'))
+        const video = new Video(new Page(account, 'Name'), '/tmp')
         new Reaction(video, account, 'like')
     })
 
     it('Can comment a video', () => {
-        const video = new Video(new Page(account, 'Name'))
+        const video = new Video(new Page(account, 'Name'), '/tmp')
 
         try {
             new VideoComment(video, account, '')

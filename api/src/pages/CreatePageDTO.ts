@@ -1,11 +1,19 @@
-import { Account } from '../../../domain'
+import { Account, EmptyNameError } from '../../../domain';
+
+interface CreatePageDTOParams {
+    name: string;
+    account: Account;
+}
 
 export class CreatePageDTO {
     public readonly name: string
     public readonly account: Account
 
-    constructor(body: any) {
-        const { name, account } = body
+    constructor(body: CreatePageDTOParams) {
+        const { name, account } = body;
+        if (!name) {
+            throw new EmptyNameError()
+        }
         this.name = name
         this.account = account
     }

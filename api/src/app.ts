@@ -1,7 +1,7 @@
-import Koa from 'koa'
-import koaBody from 'koa-body'
-import 'reflect-metadata'
-import { router } from './routing'
+import Koa from 'koa';
+import koaBody from 'koa-body';
+import 'reflect-metadata';
+import { router } from './routing';
 
 const app = new Koa()
     .use(koaBody({

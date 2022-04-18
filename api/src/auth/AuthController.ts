@@ -5,19 +5,19 @@ import { UnknowSignInMethodError } from '../utils/errors'
 import {
     EMAIL_FORMAT_ERROR,
     PASSWORD_FORMAT_ERROR,
-    UNKNOWN_SIGN_IN_METHOD,
+    UNKNOWN_SIGN_IN_METHOD
 } from '../utils/http-messages'
 import { AuthService } from './AuthService'
 import { SignInDTO } from './SignInDTO'
 
 @Service()
 export class AuthController {
-    constructor(private readonly authService: AuthService) {}
+    constructor(private readonly authService: AuthService) { }
 
-    signIn({ context }: ControllerParams) {
+    async signIn({ context }: ControllerParams) {
         try {
             const dto = new SignInDTO(context.request.body)
-            const payload = this.authService.signIn(dto)
+            const payload = await this.authService.signIn(dto);      
 
             if (!payload) {
                 return new Response({

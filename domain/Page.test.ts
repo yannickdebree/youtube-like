@@ -11,11 +11,11 @@ describe(Page.name, () => {
     )
 
     it('Can upload a video', () => {
-        new Video(page)
+        new Video(page, '/tmp')
     })
 
     it('Can update a video', () => {
-        const video = new Video(page)
+        const video = new Video(page, '/tmp')
         const newName = 'New title'
         video.setName(newName)
         expect(video.getName()).toEqual(newName)

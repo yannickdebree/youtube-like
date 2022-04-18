@@ -3,7 +3,7 @@ import { Service } from "typedi";
 import { Uid } from '../../../domain';
 import { PagesService } from '../pages';
 import { ControllerParams, Response } from "../routing";
-import { EmptyVideoSourceError } from "../utils/errors";
+import { EmptyVideoSourceError } from "../../../domain";
 import { EMPTY_VIDEO_SOURCE } from "../utils/http-messages";
 import { UploadVideoDTO } from './UploadVideoDTO';
 import { VideosService } from './VideosService';
@@ -23,6 +23,7 @@ export class VideosController {
         try {
             const { uid } = (context.request as any).params;
             const page = this.pagesService.findByUid(new Uid(uid));
+
             if (!page || !page.getAccount().getEmail().isEquals(connectedAccount.getEmail())) {
                 return new Response({ status: 401 })
             }
@@ -33,9 +34,9 @@ export class VideosController {
                 throw new EmptyVideoSourceError();
             }
 
-            const dto = new UploadVideoDTO({ path: file.path, ...context.request.body, page });
+            const dto = new UploadVideoDTO({ ...context.request.body, path: file.path, page });
 
-            this.videosService.create(dto);
+            await this.videosService.create(dto);
 
             return new Response({ status: 201 });
         } catch (err) {

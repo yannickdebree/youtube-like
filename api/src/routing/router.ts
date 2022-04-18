@@ -1,10 +1,14 @@
 import Router from 'koa-router'
 import Container from 'typedi'
-import { AccountsController } from '../accounts'
+import { AccountsController, FakeAccountsRepository } from '../accounts'
 import { AuthController } from '../auth'
 import { PagesController } from '../pages'
-import { VideosController } from '../videos'
+import { ACCOUNTS_REPOSITORY, VIDEOS_REPOSITORY } from '../utils/services-tokens'
+import { FakeVideosRepository, VideosController } from '../videos'
 import { ControllerResolver } from './ControllerResolver'
+
+Container.set(ACCOUNTS_REPOSITORY, new FakeAccountsRepository());
+Container.set(VIDEOS_REPOSITORY, new FakeVideosRepository());
 
 const controllerRunner = Container.get(ControllerResolver)
 

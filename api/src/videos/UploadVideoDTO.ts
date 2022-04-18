@@ -1,5 +1,11 @@
 import { Page } from "../../../domain";
-import { EmptyVideoSourceError } from "../utils/errors";
+
+interface UploadVideoDTOParams {
+    path: string;
+    page: Page;
+    name?: string;
+    description?: string;
+}
 
 export class UploadVideoDTO {
     public readonly path: string;
@@ -7,11 +13,8 @@ export class UploadVideoDTO {
     public readonly name?: string;
     public readonly description?: string;
 
-    constructor(body: any) {
+    constructor(body: UploadVideoDTOParams) {
         const { path, page, name, description } = body;
-        if (!path) {
-            throw new EmptyVideoSourceError();
-        }
         this.path = path;
         this.page = page;
         this.name = name;

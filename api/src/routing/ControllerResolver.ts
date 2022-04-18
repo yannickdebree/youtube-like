@@ -18,7 +18,7 @@ export class ControllerResolver {
         return async (context: Context, next: Next) => {
             let response = new Response({ status: 500 })
 
-            const connectedAccount = this.getConnectedAccount(context)
+            const connectedAccount = await this.getConnectedAccount(context)
 
             try {
                 const responseFromController = await controllerHandler({
@@ -44,7 +44,7 @@ export class ControllerResolver {
         }
     }
 
-    getConnectedAccount(context: Context) {
+    private async getConnectedAccount(context: Context) {
         let connectedAccount: Account | undefined
 
         const authorization = context.headers.authorization
@@ -55,7 +55,7 @@ export class ControllerResolver {
             ) as jwt.JwtPayload
             const email = payload.email.value
             if (!!email) {
-                connectedAccount = this.accountsService.findByEmail(
+                connectedAccount = await this.accountsService.findByEmail(
                     new Email(email)
                 )
             }

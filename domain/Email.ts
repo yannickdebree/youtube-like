@@ -5,7 +5,7 @@ const emailRegex =
 
 export class Email {
     constructor(private readonly value: string) {
-        if (!value || !value.match(emailRegex)) {
+        if (value.length === 0 || !value.match(emailRegex)) {
             throw new EmailFormatError()
         }
     }

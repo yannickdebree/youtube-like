@@ -1,8 +1,9 @@
 export * from './Account'
+export * from './AccountsRepository'
 export * from './Email'
 export * from './errors'
 export * from './Page'
 export * from './Password'
 export * from './Uid'
 export * from './Video'
-
+export * from './VideosRepository'

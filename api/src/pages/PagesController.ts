@@ -18,7 +18,7 @@ export class PagesController {
             const dto = new CreatePageDTO({
                 ...context.request.body,
                 account: connectedAccount,
-            })
+            });         
 
             const uid = this.pagesService.create(dto).getValue();
 

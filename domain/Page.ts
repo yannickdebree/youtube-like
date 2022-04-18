@@ -6,7 +6,7 @@ export class Page {
     private uid?: Uid
 
     constructor(private readonly account: Account, private name: string) {
-        if (!name) {
+        if (name.length === 0) {
             throw new EmptyNameError()
         }
     }

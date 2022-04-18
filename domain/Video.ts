@@ -1,13 +1,17 @@
+import { EmptyVideoSourceError } from './errors/EmptyVideoSourceError';
 import { Page } from './Page';
 import { Uid } from './Uid';
 
 export class Video {
     private uid?: Uid;
-    private path?: string;
     private name?: string;
     private description?: string;
 
-    constructor(private page: Page) { }
+    constructor(private page: Page, private path: string) {
+        if (!path) {
+            throw new EmptyVideoSourceError();
+        }
+    }
 
     getUid() {
         return this.uid
@@ -17,12 +21,12 @@ export class Video {
         return this.name;
     }
 
-    setUid(uid: Uid) {
-        this.uid = uid
+    getDescription() {
+        return this.description;
     }
 
-    setPath(path: string) {
-        this.path = path;
+    setUid(uid: Uid) {
+        this.uid = uid
     }
 
     setName(name: string) {

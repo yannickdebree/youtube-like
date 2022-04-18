@@ -1,5 +1,11 @@
+import { UidFormatError } from "./errors"
+
 export class Uid {
-    constructor(private readonly value: string) {}
+    constructor(private readonly value: string) {
+        if (value.length === 0) {
+            throw new UidFormatError();
+        }
+    }
 
     getValue() {
         return this.value
