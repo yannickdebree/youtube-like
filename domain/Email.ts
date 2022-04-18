@@ -1,21 +1,20 @@
-import { EmailFormatError } from "./errors";
+import { EmailFormatError } from './errors'
 
-const emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
 export class Email {
-    constructor(
-        private readonly value: string
-    ) {
+    constructor(private readonly value: string) {
         if (!value || !value.match(emailRegex)) {
-            throw new EmailFormatError();
+            throw new EmailFormatError()
         }
     }
 
     getValue() {
-        return this.value;
+        return this.value
     }
 
     isEquals(email: Email) {
-        return this.value === email.getValue();
+        return this.value === email.getValue()
     }
 }

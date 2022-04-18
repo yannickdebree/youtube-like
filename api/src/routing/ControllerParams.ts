@@ -1,7 +1,7 @@
-import { Context } from "koa";
-import { Account } from "../../../domain";
+import { Context } from 'koa'
+import { Account } from '../../../domain'
 
 export interface ControllerParams {
-    context: Context,
+    context: Context
     connectedAccount?: Account
 }

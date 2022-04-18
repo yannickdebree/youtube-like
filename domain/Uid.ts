@@ -1,11 +1,11 @@
 export class Uid {
-    constructor(private readonly value: string) { }
+    constructor(private readonly value: string) {}
 
     getValue() {
-        return this.value;
+        return this.value
     }
 
     isEquals(uid: Uid) {
-        return this.value === uid.getValue();
+        return this.value === uid.getValue()
     }
 }

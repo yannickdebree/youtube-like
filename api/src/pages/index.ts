@@ -1,1 +1,1 @@
-export * from './PagesController';
+export * from './PagesController'

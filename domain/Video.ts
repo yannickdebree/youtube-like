@@ -1,15 +1,15 @@
-import { Page } from './Page';
+import { Page } from './Page'
 
 export class Video {
-    private title?: string;
+    private title?: string
 
-    constructor(private page: Page) { }
+    constructor(private page: Page) {}
 
     getTitle() {
-        return this.title;
+        return this.title
     }
 
     setTitle(title: string) {
-        this.title = title;
+        this.title = title
     }
 }

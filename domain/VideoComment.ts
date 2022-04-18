@@ -1,6 +1,6 @@
-import { Account } from "./Account";
-import { CommentFormatError } from "./errors";
-import { Video } from "./Video";
+import { Account } from './Account'
+import { CommentFormatError } from './errors'
+import { Video } from './Video'
 
 export class VideoComment {
     constructor(

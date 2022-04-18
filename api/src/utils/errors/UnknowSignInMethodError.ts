@@ -1,6 +1,6 @@
 export class UnknowSignInMethodError extends Error {
     constructor() {
-        super();
-        Object.setPrototypeOf(this, UnknowSignInMethodError.prototype);
+        super()
+        Object.setPrototypeOf(this, UnknowSignInMethodError.prototype)
     }
 }

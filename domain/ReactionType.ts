@@ -1,1 +1,1 @@
-export type ReactionType = 'like' | 'dislike';
+export type ReactionType = 'like' | 'dislike'

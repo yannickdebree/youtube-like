@@ -24,3 +24,7 @@ test:
 .PHONY: test-watch
 test-watch:
 	$(dr) api yarn test:watch
+
+.PHONY: format
+format:
+	$(dr) api yarn format

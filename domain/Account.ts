@@ -1,14 +1,14 @@
-import { Email } from "./Email";
-import { Password } from "./Password";
+import { Email } from './Email'
+import { Password } from './Password'
 
 export class Account {
-    constructor(private email: Email, private password: Password) { }
+    constructor(private email: Email, private password: Password) {}
 
     getEmail() {
-        return this.email;
+        return this.email
     }
 
     getPassword() {
-        return this.password;
+        return this.password
     }
 }

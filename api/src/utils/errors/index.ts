@@ -1,2 +1,2 @@
-export * from './EmailEvenUsedError';
-export * from './UnknowSignInMethodError';
+export * from './EmailEvenUsedError'
+export * from './UnknowSignInMethodError'

@@ -1,9 +1,9 @@
-import { Account } from "./Account";
-import { EmptyNameError } from "./errors";
-import { Uid } from "./Uid";
+import { Account } from './Account'
+import { EmptyNameError } from './errors'
+import { Uid } from './Uid'
 
 export class Page {
-    private uid?: Uid;
+    private uid?: Uid
 
     constructor(private readonly account: Account, private name: string) {
         if (!name) {
@@ -12,10 +12,10 @@ export class Page {
     }
 
     getUid() {
-        return this.uid;
+        return this.uid
     }
 
     setUid(uid: Uid) {
-        this.uid = uid;
+        this.uid = uid
     }
 }
