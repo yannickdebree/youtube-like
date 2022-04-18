@@ -1,22 +1,16 @@
 dc := docker-compose
 dr := $(dc) run --rm
 
+# Containers shells
 .PHONY: shell-api
 shell-api:
 	$(dr) --no-deps api bash
 
-.PHONY: serve
-serve:
-	$(dc) up
+.PHONY: shell-pwa
+shell-pwa:
+	$(dr) --no-deps pwa bash
 
-.PHONY: stop
-stop:
-	$(dc) stop
-
-.PHONY: clean
-clean:
-	$(dc) down --volumes
-
+# Utils (test, format)
 .PHONY: test
 test:
 	$(dr) api yarn test
@@ -28,3 +22,16 @@ test-watch:
 .PHONY: format
 format:
 	$(dr) api yarn format
+
+# Containers cluster managment
+.PHONY: serve
+serve:
+	$(dc) up
+
+.PHONY: stop
+stop:
+	$(dc) stop
+
+.PHONY: clean
+clean:
+	$(dc) down --volumes

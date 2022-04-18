@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { Service } from 'typedi'
 import { AccountsService } from '../accounts'
-import { API_SECRET } from '../utils/environment'
+import { API_SECRET } from '../../../utils'
 import { SignInDTO } from './SignInDTO'
 
 @Service()

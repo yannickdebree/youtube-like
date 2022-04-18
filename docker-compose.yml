@@ -10,3 +10,13 @@ services:
             - $PWD:/usr/src/api
         ports:
             - $API_PORT:$API_PORT
+    
+    pwa:
+        image: node:16
+        container_name: youtube-like-pwa
+        command: yarn start:pwa
+        working_dir: /usr/src/pwa
+        volumes:
+            - $PWD:/usr/src/pwa
+        ports:
+            - $PWA_PORT:$PWA_PORT
