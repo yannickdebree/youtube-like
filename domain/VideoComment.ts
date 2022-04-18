@@ -1,5 +1,5 @@
 import { Account } from "./Account";
-import { EmptyCommentError } from "./errors";
+import { CommentFormatError } from "./errors";
 import { Video } from "./Video";
 
 export class VideoComment {
@@ -9,7 +9,7 @@ export class VideoComment {
         private content: string
     ) {
         if (!content.length) {
-            throw new EmptyCommentError()
+            throw new CommentFormatError()
         }
     }
 }

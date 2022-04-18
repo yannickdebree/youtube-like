@@ -1,7 +1,7 @@
 import { Page } from './Page';
 
 export class Video {
-    private title: string;
+    private title?: string;
 
     constructor(private page: Page) { }
 
