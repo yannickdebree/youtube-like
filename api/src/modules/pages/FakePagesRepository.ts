@@ -1,4 +1,4 @@
-import { Page, PagesRepository, Uid } from "../../../../domain";
+import { Page, PagesRepository, Uid } from "../../domain";
 
 export class FakePagesRepository implements PagesRepository {
     private pages = new Array<Page>();

@@ -1,4 +1,4 @@
-import { Account, EmptyNameError } from '../../../../domain';
+import { Account, EmptyNameError } from '../../domain';
 
 interface CreatePageDTOParams {
     name: string;

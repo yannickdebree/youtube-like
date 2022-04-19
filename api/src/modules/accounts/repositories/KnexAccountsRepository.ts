@@ -1,6 +1,6 @@
 import { Knex } from "knex";
 import { Inject, Service } from "typedi";
-import { Account, AccountsRepository, Email, Password } from "../../../../../domain";
+import { Account, AccountsRepository, Email, Password } from "../../../domain";
 import { KNEX_CONNECTION } from "../../../utils/services-tokens";
 
 @Service()

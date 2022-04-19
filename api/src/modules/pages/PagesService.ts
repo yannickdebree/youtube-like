@@ -1,6 +1,6 @@
 import { Inject, Service } from 'typedi'
 import { v4 as uuid } from 'uuid'
-import { Page, PagesRepository, Uid } from '../../../../domain'
+import { Page, PagesRepository, Uid } from '../../domain'
 import { PAGES_REPOSITORY } from '../../utils/services-tokens'
 import { CreatePageDTO } from './CreatePageDTO'
 

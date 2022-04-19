@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import Container from 'typedi'
-import { Account, Email, Password } from '../../../../domain'
+import { Account, Email, Password } from '../../domain'
 import { PAGES_REPOSITORY } from '../../utils/services-tokens'
 import { CreatePageDTO } from './CreatePageDTO'
 import { FakePagesRepository } from './FakePagesRepository'

@@ -1,5 +1,5 @@
 import { Service } from 'typedi'
-import { EmptyNameError } from '../../../../domain'
+import { EmptyNameError } from '../../domain'
 import { ControllerParams, Response } from '../../core/routing'
 import { EMPTY_NAME } from '../../utils/http-messages'
 import { CreatePageDTO } from './CreatePageDTO'

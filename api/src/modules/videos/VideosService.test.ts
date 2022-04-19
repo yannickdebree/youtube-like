@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import Container from 'typedi'
-import { Account, Email, Page, Password } from '../../../../domain'
+import { Account, Email, Page, Password } from '../../domain'
 import { VIDEOS_REPOSITORY } from '../../utils/services-tokens'
 import { FakeVideosRepository } from './FakeVideosRepository'
 import { UploadVideoDTO } from './UploadVideoDTO'

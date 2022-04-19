@@ -1,8 +1,8 @@
 import knex from 'knex';
 import 'reflect-metadata';
 import Container from 'typedi';
-import { Email } from '../../../../domain';
-import config from '../../../../knexfile';
+import config from '../../../knexfile';
+import { Email } from '../../domain';
 import { NODE_ENV } from '../../utils/environment';
 import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION } from '../../utils/services-tokens';
 import { AccountsService } from './AccountsService';

@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "build:api": "tsc -p ./api/tsconfig.build.json",
+        "build:api": "rm -rf dist && tsc -p ./api/tsconfig.build.json",
         "format": "prettier --write .",
         "start:api": "nodemon api/main.ts",
         "migrate:up": "knex migrate:latest",

@@ -1,4 +1,4 @@
-import { Email, Password } from '../../../../domain';
+import { Email, Password } from '../../domain';
 import { UnknowSignInMethodError } from '../../utils/errors';
 
 interface SignInDTOParams {

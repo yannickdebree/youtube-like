@@ -1,6 +1,12 @@
 {
-    "extends": "../tsconfig.build.json",
     "compilerOptions": {
         "outDir": "../dist/api",
-    }
+        "esModuleInterop": true,
+        "experimentalDecorators": true
+    },
+    "exclude": [
+        "./e2e/*",
+        "*.test.ts",
+        "../knexfile.ts"
+    ],
 }

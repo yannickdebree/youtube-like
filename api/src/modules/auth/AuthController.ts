@@ -1,5 +1,5 @@
 import { Service } from 'typedi'
-import { EmailFormatError, PasswordFormatError } from '../../../../domain'
+import { EmailFormatError, PasswordFormatError } from '../../domain'
 import { ControllerParams, Response } from '../../core/routing'
 import { UnknowSignInMethodError } from '../../utils/errors'
 import {

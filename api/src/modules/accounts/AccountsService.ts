@@ -1,5 +1,5 @@
 import { Inject, Service } from 'typedi';
-import { Account, AccountsRepository, Email } from '../../../../domain';
+import { Account, AccountsRepository, Email } from '../../domain';
 import { EmailEvenUsedError } from '../../utils/errors';
 import { ACCOUNTS_REPOSITORY } from '../../utils/services-tokens';
 import { CreateAccountDTO } from './CreateAccountDTO';

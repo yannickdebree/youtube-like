@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import { Context, Next } from 'koa'
 import { Service } from 'typedi'
-import { Account, Email } from '../../../../domain'
+import { Account, Email } from '../../domain'
 import { AccountsService } from '../../modules'
 import { API_SECRET, NODE_ENV } from '../../utils/environment'
 import { UNAUTHORIZED } from '../../utils/http-messages'

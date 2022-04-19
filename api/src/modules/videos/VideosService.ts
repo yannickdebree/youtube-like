@@ -1,6 +1,6 @@
 import { Inject, Service } from 'typedi'
 import { v4 as uuid } from 'uuid'
-import { Uid, Video, VideosRepository } from '../../../../domain'
+import { Uid, Video, VideosRepository } from '../../domain'
 import { VIDEOS_REPOSITORY } from '../../utils/services-tokens'
 import { UploadVideoDTO } from './UploadVideoDTO'
 

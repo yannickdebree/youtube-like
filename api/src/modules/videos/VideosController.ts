@@ -1,6 +1,6 @@
 import { File } from 'formidable';
 import { Service } from "typedi";
-import { EmptyVideoSourceError, Uid } from '../../../../domain';
+import { EmptyVideoSourceError, Uid } from '../../domain';
 import { ControllerParams, Response } from "../../core/routing";
 import { EMPTY_VIDEO_SOURCE } from "../../utils/http-messages";
 import { PagesService } from '../pages';
