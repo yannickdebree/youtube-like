@@ -31,7 +31,7 @@ services:
         volumes:
             - $PWD:/usr/srcnew/pwa
         ports:
-            - $PWA_PORT:$PWA_PORT
+            - $PWA_PORT:3000
 
     mysql:
         image: mysql:5.7

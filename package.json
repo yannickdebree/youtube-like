@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "build:api": "",
+        "build:api": "tsc -p ./api/tsconfig.build.json",
         "format": "prettier --write .",
         "start:api": "nodemon api/main.ts",
         "migrate:up": "knex migrate:latest",
@@ -29,6 +29,7 @@
         "prettier": "^2.6.2",
         "supertest": "^6.2.2",
         "ts-node": "^10.7.0",
+        "tsc": "^2.0.4",
         "typescript": "^4.6.3",
         "vite": "^2.9.5"
     },

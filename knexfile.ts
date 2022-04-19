@@ -1,5 +1,5 @@
 import type { Knex } from "knex";
-import { MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_USER } from "./utils";
+import { MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_USER } from "./api/src/utils/environment";
 
 const commonConfig = {
   client: 'mysql',

@@ -28,8 +28,8 @@ format:
 	$(dr) api yarn format
 
 .PHONY: build
-build:
-	$(dr) api yarn build:api
+build: node_modules/time
+	$(dr) --no-deps api yarn build:api
 
 # Containers cluster managment
 .PHONY: serve

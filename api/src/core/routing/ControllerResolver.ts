@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 import { Context, Next } from 'koa'
 import { Service } from 'typedi'
 import { Account, Email } from '../../../../domain'
-import { API_SECRET } from '../../../../utils'
 import { AccountsService } from '../../modules'
+import { API_SECRET, NODE_ENV } from '../../utils/environment'
 import { UNAUTHORIZED } from '../../utils/http-messages'
 import { ControllerHandler } from './ControllerHandler'
 import { Response } from './Response'
@@ -30,7 +30,7 @@ export class ControllerResolver {
                     response = responseFromController
                 }
             } catch (err) {
-                if (process.env.NODE_ENV !== 'production') {
+                if (NODE_ENV !== 'production') {
                     console.warn(err)
                 }
             } finally {

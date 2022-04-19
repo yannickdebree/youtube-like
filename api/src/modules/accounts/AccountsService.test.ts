@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import Container from 'typedi';
 import { Email } from '../../../../domain';
 import config from '../../../../knexfile';
-import { NODE_ENV } from '../../../../utils';
+import { NODE_ENV } from '../../utils/environment';
 import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION } from '../../utils/services-tokens';
 import { AccountsService } from './AccountsService';
 import { CreateAccountDTO } from './CreateAccountDTO';
