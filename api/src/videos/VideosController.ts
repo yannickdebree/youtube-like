@@ -1,9 +1,8 @@
 import { File } from 'formidable';
 import { Service } from "typedi";
-import { Uid } from '../../../domain';
+import { EmptyVideoSourceError, Uid } from '../../../domain';
 import { PagesService } from '../pages';
 import { ControllerParams, Response } from "../routing";
-import { EmptyVideoSourceError } from "../../../domain";
 import { EMPTY_VIDEO_SOURCE } from "../utils/http-messages";
 import { UploadVideoDTO } from './UploadVideoDTO';
 import { VideosService } from './VideosService';
@@ -16,15 +15,11 @@ export class VideosController {
     ) { }
 
     async upload({ connectedAccount, context }: ControllerParams) {
-        if (!connectedAccount) {
-            return new Response({ status: 401 });
-        }
-
         try {
             const { uid } = (context.request as any).params;
             const page = this.pagesService.findByUid(new Uid(uid));
 
-            if (!page || !page.getAccount().getEmail().isEquals(connectedAccount.getEmail())) {
+            if (!page || !connectedAccount?.getEmail().isEquals(page.getAccount().getEmail())) {
                 return new Response({ status: 401 })
             }
 

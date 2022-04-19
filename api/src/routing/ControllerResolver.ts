@@ -5,7 +5,7 @@ import { Account, Email } from '../../../domain'
 import { API_SECRET } from '../../../utils'
 import { AccountsService } from '../accounts'
 import { UNAUTHORIZED } from '../utils/http-messages'
-import { ControllerParams } from './ControllerParams'
+import { ControllerHandler } from './ControllerHandler'
 import { Response } from './Response'
 
 @Service()
@@ -13,7 +13,7 @@ export class ControllerResolver {
     constructor(private readonly accountsService: AccountsService) { }
 
     run<T>(
-        controllerHandler: (params: ControllerParams) => Promise<Response<T> | undefined> | Response<T> | undefined
+        controllerHandler: ControllerHandler<T>
     ) {
         return async (context: Context, next: Next) => {
             let response = new Response({ status: 500 })

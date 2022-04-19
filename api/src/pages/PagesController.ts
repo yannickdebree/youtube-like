@@ -2,23 +2,19 @@ import { Service } from 'typedi'
 import { EmptyNameError } from '../../../domain'
 import { ControllerParams, Response } from '../routing'
 import { EMPTY_NAME } from '../utils/http-messages'
-import { PagesService } from './PagesService'
 import { CreatePageDTO } from './CreatePageDTO'
+import { PagesService } from './PagesService'
 
 @Service()
 export class PagesController {
-    constructor(private readonly pagesService: PagesService) {}
+    constructor(private readonly pagesService: PagesService) { }
 
     create({ connectedAccount, context }: ControllerParams) {
-        if (!connectedAccount) {
-            return new Response({ status: 401 })
-        }
-
         try {
             const dto = new CreatePageDTO({
                 ...context.request.body,
                 account: connectedAccount,
-            });         
+            });
 
             const uid = this.pagesService.create(dto).getValue();
 
