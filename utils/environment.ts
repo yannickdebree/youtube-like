@@ -2,20 +2,21 @@ import { config } from 'dotenv';
 
 config();
 
-if (!process.env.PWA_PORT) {
-    throw new Error("Environment variable 'PWA_PORT' must be defined")
+function checkEnvironmentVariable(key: string) {
+    if (!process.env[key]) {
+        throw new Error(`Environment variable '${key}' must be defined`)
+    }
+    return process.env[key] as string;
 }
 
-export const PWA_PORT = process.env.PWA_PORT;
+export const NODE_ENV = checkEnvironmentVariable("NODE_ENV");
 
-if (!process.env.API_PORT) {
-    throw new Error("Environment variable 'API_PORT' must be defined")
-}
+export const API_PORT = checkEnvironmentVariable("API_PORT");
+export const API_SECRET = checkEnvironmentVariable("API_SECRET");
 
-export const API_PORT = process.env.API_PORT
+export const PWA_PORT = checkEnvironmentVariable("PWA_PORT");
 
-if (!process.env.API_SECRET) {
-    throw new Error("Environment variable 'API_SECRET' must be defined")
-}
-
-export const API_SECRET = process.env.API_SECRET
+export const MYSQL_HOST = checkEnvironmentVariable("MYSQL_HOST");
+export const MYSQL_DATABASE = checkEnvironmentVariable("MYSQL_DATABASE");
+export const MYSQL_USER = checkEnvironmentVariable("MYSQL_USER");
+export const MYSQL_PASSWORD = checkEnvironmentVariable("MYSQL_PASSWORD");

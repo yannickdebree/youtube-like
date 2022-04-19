@@ -3,11 +3,13 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
+        "build:api": "",
         "format": "prettier --write .",
         "start:api": "nodemon api/main.ts",
+        "migrate:up": "knex migrate:latest",
+        "migrate:down": "knex migrate:down",
         "start:pwa": "vite",
-        "test": "jest",
-        "test:watch": "jest --watchAll --verbose"
+        "test": "jest"
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.17.9",

@@ -6,7 +6,7 @@ import { FakeVideosRepository } from './FakeVideosRepository'
 import { UploadVideoDTO } from './UploadVideoDTO'
 import { VideosService } from './VideosService'
 
-describe(VideosService.name, () => {
+describe.skip(VideosService.name, () => {
     Container.set(VIDEOS_REPOSITORY, new FakeVideosRepository());
     const videosService = Container.get(VideosService);
 

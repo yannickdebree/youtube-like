@@ -6,9 +6,9 @@ import {
     PASSWORD_FORMAT_ERROR
 } from '../src/utils/http-messages'
 
-describe('accounts (REST)', () => {
+describe.skip('accounts (REST)', () => {
     describe('Can create account', () => {
-        describe('Without correct infos', () => {
+        describe.skip('Without correct infos', () => {
             it('Cannot create account without email', async () => {
                 const { body } = await request(app.callback())
                     .post('/accounts')
@@ -85,7 +85,7 @@ describe('accounts (REST)', () => {
             })
         })
 
-        describe('With correct infos', () => {
+        describe.only('With correct infos', () => {
             it('Can create account with correct infos', async () => {
                 await request(app.callback())
                     .post('/accounts')

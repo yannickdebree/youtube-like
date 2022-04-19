@@ -1,3 +1,4 @@
 export * from './AccountsController';
 export * from './AccountsService';
-export * from './FakeAccountsRepository';
+export * from './repositories';
+

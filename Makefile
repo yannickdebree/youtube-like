@@ -1,6 +1,14 @@
 dc := docker-compose
 dr := $(dc) run --rm
 
+# Dependencies
+.PHONY: install
+install: node_modules/time
+
+node_modules/time: yarn.lock
+	$(dr) --no-deps api yarn
+	touch node_modules/time
+
 # Containers shells
 .PHONY: shell-api
 shell-api:
@@ -15,13 +23,13 @@ shell-pwa:
 test:
 	$(dr) api yarn test
 
-.PHONY: test-watch
-test-watch:
-	$(dr) api yarn test:watch
-
 .PHONY: format
 format:
 	$(dr) api yarn format
+
+.PHONY: build
+build:
+	$(dr) api yarn build:api
 
 # Containers cluster managment
 .PHONY: serve

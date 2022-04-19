@@ -1,14 +1,11 @@
 import Router from 'koa-router';
 import Container from 'typedi';
 import { ControllerResolver } from '../core/routing/ControllerResolver';
-import { AccountsController, AuthController, FakeAccountsRepository, FakeVideosRepository, PagesController, VideosController } from '../modules';
-import { FakePagesRepository } from '../modules/pages/FakePagesRepository';
-import { ACCOUNTS_REPOSITORY, PAGES_REPOSITORY, VIDEOS_REPOSITORY } from '../utils/services-tokens';
+import { AccountsController, AuthController, PagesController, VideosController } from '../modules';
 import { isAccountAuthenticatedGuard } from './guards';
+import { declareProviders } from './services';
 
-Container.set(ACCOUNTS_REPOSITORY, new FakeAccountsRepository());
-Container.set(VIDEOS_REPOSITORY, new FakeVideosRepository());
-Container.set(PAGES_REPOSITORY, new FakePagesRepository());
+declareProviders();
 
 const controllerRunner = Container.get(ControllerResolver)
 
@@ -29,4 +26,8 @@ export const router = new Router()
     .post(
         '/pages',
         controllerRunner.run(isAccountAuthenticatedGuard((params) => pagesController.create(params)))
-    ).post('/pages/:uid/videos', controllerRunner.run(isAccountAuthenticatedGuard(params => videosController.upload(params))));
+)
+    .post(
+        '/pages/:uid/videos',
+        controllerRunner.run(isAccountAuthenticatedGuard(params => videosController.upload(params)))
+    );

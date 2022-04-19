@@ -6,7 +6,7 @@ import { CreatePageDTO } from './CreatePageDTO'
 import { FakePagesRepository } from './FakePagesRepository'
 import { PagesService } from './PagesService'
 
-describe(PagesService.name, () => {
+describe.skip(PagesService.name, () => {
     Container.set(PAGES_REPOSITORY, new FakePagesRepository());
     const pagesService = Container.get(PagesService);
 

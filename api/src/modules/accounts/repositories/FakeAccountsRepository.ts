@@ -1,4 +1,4 @@
-import { Account, AccountsRepository, Email } from "../../../../domain";
+import { Account, AccountsRepository, Email } from "../../../../../domain";
 
 export class FakeAccountsRepository implements AccountsRepository {
     private accounts = new Array<Account>();
