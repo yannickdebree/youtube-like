@@ -1,11 +1,8 @@
 import Router from 'koa-router';
 import Container from 'typedi';
-import { AccountsController, FakeAccountsRepository } from '../accounts';
-import { AuthController } from '../auth';
 import { ControllerResolver } from '../core/routing/ControllerResolver';
-import { PagesController } from '../pages';
+import { AccountsController, AuthController, FakeAccountsRepository, FakeVideosRepository, PagesController, VideosController } from '../modules';
 import { ACCOUNTS_REPOSITORY, VIDEOS_REPOSITORY } from '../utils/services-tokens';
-import { FakeVideosRepository, VideosController } from '../videos';
 import { isAccountAuthenticatedGuard } from './guards';
 
 Container.set(ACCOUNTS_REPOSITORY, new FakeAccountsRepository());

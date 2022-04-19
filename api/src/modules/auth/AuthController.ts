@@ -1,12 +1,12 @@
 import { Service } from 'typedi'
-import { EmailFormatError, PasswordFormatError } from '../../../domain'
-import { ControllerParams, Response } from '../core/routing'
-import { UnknowSignInMethodError } from '../utils/errors'
+import { EmailFormatError, PasswordFormatError } from '../../../../domain'
+import { ControllerParams, Response } from '../../core/routing'
+import { UnknowSignInMethodError } from '../../utils/errors'
 import {
     EMAIL_FORMAT_ERROR,
     PASSWORD_FORMAT_ERROR,
     UNKNOWN_SIGN_IN_METHOD
-} from '../utils/http-messages'
+} from '../../utils/http-messages'
 import { AuthService } from './AuthService'
 import { SignInDTO } from './SignInDTO'
 
@@ -17,7 +17,7 @@ export class AuthController {
     async signIn({ context }: ControllerParams) {
         try {
             const dto = new SignInDTO(context.request.body)
-            const payload = await this.authService.signIn(dto);      
+            const payload = await this.authService.signIn(dto);
 
             if (!payload) {
                 return new Response({

@@ -1,4 +1,4 @@
-import { Uid, Video, VideosRepository } from "../../../domain";
+import { Uid, Video, VideosRepository } from "../../../../domain";
 
 export class FakeVideosRepository implements VideosRepository {
     private videos = new Array<Video>();

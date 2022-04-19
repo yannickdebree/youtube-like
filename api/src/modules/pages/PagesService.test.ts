@@ -1,4 +1,4 @@
-import { Account, Email, Password } from '../../../domain'
+import { Account, Email, Password } from '../../../../domain'
 import { PagesService } from './PagesService'
 import { CreatePageDTO } from './CreatePageDTO'
 

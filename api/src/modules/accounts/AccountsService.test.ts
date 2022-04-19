@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import Container from 'typedi';
-import { Email } from '../../../domain';
-import { ACCOUNTS_REPOSITORY } from '../utils/services-tokens';
+import { Email } from '../../../../domain';
+import { ACCOUNTS_REPOSITORY } from '../../utils/services-tokens';
 import { AccountsService } from './AccountsService';
 import { CreateAccountDTO } from './CreateAccountDTO';
 import { FakeAccountsRepository } from './FakeAccountsRepository';

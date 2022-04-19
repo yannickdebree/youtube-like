@@ -1,4 +1,4 @@
-import { Email, EmailFormatError, Password, PasswordFormatError } from '../../../domain';
+import { Email, EmailFormatError, Password, PasswordFormatError } from '../../../../domain';
 
 interface CreateAccountDTOParams {
     email: string;

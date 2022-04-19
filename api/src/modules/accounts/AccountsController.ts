@@ -1,12 +1,12 @@
 import { Service } from 'typedi'
-import { EmailFormatError, PasswordFormatError } from '../../../domain'
-import { ControllerParams, Response } from '../core/routing'
-import { EmailEvenUsedError } from '../utils/errors'
+import { EmailFormatError, PasswordFormatError } from '../../../../domain'
+import { ControllerParams, Response } from '../../core/routing'
+import { EmailEvenUsedError } from '../../utils/errors'
 import {
     EMAIl_EVEN_USED,
     EMAIL_FORMAT_ERROR,
     PASSWORD_FORMAT_ERROR
-} from '../utils/http-messages'
+} from '../../utils/http-messages'
 import { AccountsService } from './AccountsService'
 import { CreateAccountDTO } from './CreateAccountDTO'
 

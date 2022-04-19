@@ -1,4 +1,4 @@
-import { Page } from "../../../domain";
+import { Page } from "../../../../domain";
 
 interface UploadVideoDTOParams {
     path: string;

@@ -1,5 +1,5 @@
 import { Service } from 'typedi'
-import { Page, Uid } from '../../../domain'
+import { Page, Uid } from '../../../../domain'
 import { CreatePageDTO } from './CreatePageDTO'
 import { v4 as uuid } from 'uuid'
 
