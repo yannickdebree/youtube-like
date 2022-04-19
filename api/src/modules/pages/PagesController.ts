@@ -9,14 +9,14 @@ import { PagesService } from './PagesService'
 export class PagesController {
     constructor(private readonly pagesService: PagesService) { }
 
-    create({ connectedAccount, context }: ControllerParams) {
+    async create({ connectedAccount, context }: ControllerParams) {
         try {
             const dto = new CreatePageDTO({
                 ...context.request.body,
                 account: connectedAccount,
             });
 
-            const uid = this.pagesService.create(dto).getValue();
+            const uid = (await this.pagesService.create(dto)).getValue();
 
             return new Response({ status: 201, body: { data: { uid } } })
         } catch (err) {

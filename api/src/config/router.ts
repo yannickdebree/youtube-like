@@ -2,11 +2,13 @@ import Router from 'koa-router';
 import Container from 'typedi';
 import { ControllerResolver } from '../core/routing/ControllerResolver';
 import { AccountsController, AuthController, FakeAccountsRepository, FakeVideosRepository, PagesController, VideosController } from '../modules';
-import { ACCOUNTS_REPOSITORY, VIDEOS_REPOSITORY } from '../utils/services-tokens';
+import { FakePagesRepository } from '../modules/pages/FakePagesRepository';
+import { ACCOUNTS_REPOSITORY, PAGES_REPOSITORY, VIDEOS_REPOSITORY } from '../utils/services-tokens';
 import { isAccountAuthenticatedGuard } from './guards';
 
 Container.set(ACCOUNTS_REPOSITORY, new FakeAccountsRepository());
 Container.set(VIDEOS_REPOSITORY, new FakeVideosRepository());
+Container.set(PAGES_REPOSITORY, new FakePagesRepository());
 
 const controllerRunner = Container.get(ControllerResolver)
 

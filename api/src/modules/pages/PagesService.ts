@@ -1,24 +1,30 @@
-import { Service } from 'typedi'
-import { Page, Uid } from '../../../../domain'
-import { CreatePageDTO } from './CreatePageDTO'
+import { Inject, Service } from 'typedi'
 import { v4 as uuid } from 'uuid'
+import { Page, PagesRepository, Uid } from '../../../../domain'
+import { PAGES_REPOSITORY } from '../../utils/services-tokens'
+import { CreatePageDTO } from './CreatePageDTO'
 
 @Service()
 export class PagesService {
+    constructor(
+        @Inject(PAGES_REPOSITORY)
+        private readonly pagesRepository: PagesRepository
+    ) { }
+
     private pages = new Array<Page>()
 
     findByUid(uid: Uid) {
-        return this.pages.find((page) => page.getUid()?.isEquals(uid))
+        return this.pagesRepository.findByUid(uid)
     }
 
-    create(dto: CreatePageDTO) {
+    async create(dto: CreatePageDTO) {
         const { account, name } = dto
         const page = new Page(account, name)
 
         const uid = new Uid(uuid())
 
         page.setUid(uid)
-        this.pages.push(page)
+        await this.pagesRepository.save(page);
 
         return uid
     }
