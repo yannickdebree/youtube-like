@@ -1,6 +1,6 @@
 import { Service } from 'typedi'
 import { EmailFormatError, PasswordFormatError } from '../../../domain'
-import { ControllerParams, Response } from '../routing'
+import { ControllerParams, Response } from '../core/routing'
 import { EmailEvenUsedError } from '../utils/errors'
 import {
     EMAIl_EVEN_USED,

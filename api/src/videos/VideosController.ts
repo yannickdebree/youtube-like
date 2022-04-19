@@ -2,7 +2,7 @@ import { File } from 'formidable';
 import { Service } from "typedi";
 import { EmptyVideoSourceError, Uid } from '../../../domain';
 import { PagesService } from '../pages';
-import { ControllerParams, Response } from "../routing";
+import { ControllerParams, Response } from "../core/routing";
 import { EMPTY_VIDEO_SOURCE } from "../utils/http-messages";
 import { UploadVideoDTO } from './UploadVideoDTO';
 import { VideosService } from './VideosService';
