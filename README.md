@@ -6,6 +6,13 @@
 1. [Docker](https://www.docker.com/)
 1. [Docker-compose](https://docs.docker.com/compose/)
 
+# Development
+
+```bash
+cp .env.sample .env
+make serve
+```
+
 ## Deployment
 
 The deployment process needs an activated Docker Swarm cluster.

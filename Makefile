@@ -34,6 +34,7 @@ migrate: node_modules/time
 .PHONY: build
 build: node_modules/time
 	$(dr) --no-deps api yarn build:api
+	$(dr) --no-deps pwa yarn build:pwa
 
 # Containers cluster managment
 .PHONY: serve

@@ -7,7 +7,14 @@ services:
         environment:
             NODE_ENV: production
         volumes:
-            - $PWD/dist/api:/usr/src/api
-        command: node main.js
+            - $PWD:/usr/src/api
+        command: node dist/api/main.js main.js
         ports:
-            - ${API_PORT}:3000
+            - ${API_PORT}:${API_PORT}
+
+    pwa:
+        image: httpd:alpine3.15
+        volumes:
+            - $PWD/dist/pwa:/usr/local/apache2/htdocs
+        ports:
+            - ${PWA_PORT}:80

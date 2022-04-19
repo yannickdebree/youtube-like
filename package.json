@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "build:api": "rm -rf dist && tsc -p api",
+        "build:api": "rm -rf dist/api && tsc -p api",
+        "build:pwa": "rm -rf dist/pwa && vite build",
         "format": "prettier --write .",
         "knex": "knex --knexfile ./api/src/config/knexfile.ts",
         "migrate:up": "yarn knex migrate:latest",
@@ -25,6 +26,7 @@
         "@types/koa-router": "^7.4.4",
         "@types/supertest": "^2.0.12",
         "@types/uuid": "^8.3.4",
+        "@vitejs/plugin-vue": "^2.3.1",
         "babel-plugin-transform-typescript-metadata": "^0.3.2",
         "jest": "^27.5.1",
         "nodemon": "^2.0.15",
@@ -36,6 +38,8 @@
         "vite": "^2.9.5"
     },
     "dependencies": {
+        "@koa/cors": "^3.3.0",
+        "axios": "^0.26.1",
         "dotenv": "^16.0.0",
         "jsonwebtoken": "^8.5.1",
         "knex": "^1.0.7",
@@ -45,6 +49,7 @@
         "mysql": "^2.18.1",
         "reflect-metadata": "^0.1.13",
         "typedi": "^0.10.0",
-        "uuid": "^8.3.2"
+        "uuid": "^8.3.2",
+        "vue": "^3.2.33"
     }
 }
