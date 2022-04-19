@@ -15,6 +15,10 @@ export class Page {
         return this.uid
     }
 
+    getName() {
+        return this.name;
+    }
+
     getAccount() {
         return this.account;
     }

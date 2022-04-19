@@ -1,22 +1,43 @@
 import "reflect-metadata"
 import Container from 'typedi'
-import { Account, Email, Password } from '../../domain'
-import { PAGES_REPOSITORY } from '../../utils/services-tokens'
+import { declareProviders } from "../../config/services"
+import { Email, Uid } from '../../domain'
+import { AccountsService } from "../accounts"
+import { CreateAccountDTO } from "../accounts/CreateAccountDTO"
 import { CreatePageDTO } from './CreatePageDTO'
 import { PagesService } from './PagesService'
-import { FakePagesRepository } from './repositories'
 
-describe.skip(PagesService.name, () => {
-    Container.set(PAGES_REPOSITORY, new FakePagesRepository());
+describe(PagesService.name, () => {
+    declareProviders("test_with_real_database");
+
+    const accountsService = Container.get(AccountsService);
     const pagesService = Container.get(PagesService);
 
+    it('Cannot get unpersisted data', async () => {
+        const email = new Email("pages1@service.com");
+        await accountsService.create(new CreateAccountDTO({ email: email.getValue(), password: "$testtest" }));
+        const account = await accountsService.findByEmail(email);
+        const dto = new CreatePageDTO({
+            name: 'Name',
+            account
+        });
+        const uid = await pagesService.create(dto);
+        const page = await pagesService.findByUid(new Uid(uid.getValue() + "1"));
+        expect(page).toBeUndefined();
+    })
+
     it('Can persist data', async () => {
-        const account = new Account(
-            new Email('test@test.com'),
-            new Password('$testtest')
-        )
-        const dto = new CreatePageDTO({ name: 'Name', account })
-        const uid = await pagesService.create(dto)
-        expect((await pagesService.findByUid(uid))).toBeDefined()
+        const email = new Email("pages2@service.com");
+        await accountsService.create(new CreateAccountDTO({ email: email.getValue(), password: "$testtest" }));
+        const account = await accountsService.findByEmail(email);
+        const dto = new CreatePageDTO({
+            name: 'Name',
+            account
+        });
+        const uid = await pagesService.create(dto);
+        const page = await pagesService.findByUid(new Uid(uid.getValue()));
+        expect(page.getUid()).toEqual(uid);
+        expect(page.getName()).toBe(dto.name);
+        expect(page.getAccount().getEmail().isEquals(email)).toBe(true);
     })
 })

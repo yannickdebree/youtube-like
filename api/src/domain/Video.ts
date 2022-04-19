@@ -17,6 +17,14 @@ export class Video {
         return this.uid
     }
 
+    getPath() {
+        return this.path;
+    }
+
+    getPage() {
+        return this.page;
+    }
+
     getName() {
         return this.name;
     }

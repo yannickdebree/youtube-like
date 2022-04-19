@@ -1,2 +1,3 @@
-export * from './FakeVideosRepository';
+export * from './repositories';
 export * from './VideosController';
+

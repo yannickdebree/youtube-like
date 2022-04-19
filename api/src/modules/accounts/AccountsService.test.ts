@@ -1,18 +1,12 @@
-import knex from 'knex';
 import 'reflect-metadata';
 import Container from 'typedi';
-import config from '../../config/knexfile';
+import { declareProviders } from '../../config/services';
 import { Email } from '../../domain';
-import { NODE_ENV } from '../../utils/environment';
-import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION } from '../../utils/services-tokens';
 import { AccountsService } from './AccountsService';
 import { CreateAccountDTO } from './CreateAccountDTO';
-import { KnexAccountsRepository } from './repositories';
 
 describe(AccountsService.name, () => {
-    Container.set(KNEX_CONNECTION, knex(config[NODE_ENV]));
-    Container.set(ACCOUNTS_REPOSITORY, Container.get(KnexAccountsRepository));
-
+    declareProviders("test_with_real_database");
     const accountsService = Container.get(AccountsService);
 
     it('Cannot get unpersisted data', async () => {
@@ -33,6 +27,8 @@ describe(AccountsService.name, () => {
         });
         await accountsService.create(dto)
         const account = await accountsService.findByEmail(email);
-        expect(account?.getEmail()).toEqual(email)
+        expect(account.getUid()).toBeDefined();
+        expect(account.getEmail().isEquals(email)).toBe(true);
+        expect(account.getPassword().getValue()).not.toBe(dto.password)
     });
 })

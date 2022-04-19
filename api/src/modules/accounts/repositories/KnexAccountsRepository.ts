@@ -1,19 +1,22 @@
 import { Knex } from "knex";
 import { Inject, Service } from "typedi";
-import { Account, AccountsRepository, Email, Password } from "../../../domain";
+import { Account, AccountsRepository, Email, Password, Uid } from "../../../domain";
 import { KNEX_CONNECTION } from "../../../utils/services-tokens";
 
-function accountToJson(account: Account) {
+interface AccountDatabaseRow { uid: string; email: string; password: string }
+
+function accountToRow(account: Account) {
     return {
         uid: account.getUid().getValue(),
         email: account.getEmail().getValue(),
         password: account.getPassword().getValue()
-    }
+    } as AccountDatabaseRow
 }
 
-function jsonToAccount(json: any) {
-    const { email } = json;
-    return new Account(new Email(email), new Password("************"));
+export function rowToAccount({ uid, email }: AccountDatabaseRow) {
+    const account = new Account(new Email(email), new Password("************"));
+    account.setUid(new Uid(uid));
+    return account;
 }
 
 @Service()
@@ -26,15 +29,22 @@ export class KnexAccountsRepository implements AccountsRepository {
     save(account: Account) {
         return this.knex.transaction(
             transaction => transaction
-                .insert(accountToJson(account))
+                .insert(accountToRow(account))
                 .into("accounts")
         ).then(() => { });
+    }
+
+    async findByUid(uid: Uid) {
+        const row = await this.knex.select().table('accounts').where({ uid: uid.getValue() }).first();
+        if (!!row) {
+            return rowToAccount(row);
+        }
     }
 
     async findByEmail(email: Email) {
         const row = await this.knex.select().table('accounts').where({ email: email.getValue() }).first();
         if (!!row) {
-            return jsonToAccount(row);
+            return rowToAccount(row);
         }
     }
 }
