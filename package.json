@@ -16,6 +16,7 @@
         "@types/dotenv": "^8.2.0",
         "@types/jest": "^27.4.1",
         "@types/jsonwebtoken": "^8.5.8",
+        "@types/knex": "^0.16.1",
         "@types/koa": "^2.13.4",
         "@types/koa-router": "^7.4.4",
         "@types/supertest": "^2.0.12",

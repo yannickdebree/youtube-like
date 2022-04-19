@@ -7,17 +7,38 @@ services:
         command: yarn start:api
         working_dir: /usr/src/api
         user: node
+        depends_on:
+            - mysql
         volumes:
             - $PWD:/usr/src/api
         ports:
             - $API_PORT:$API_PORT
-    
+
     pwa:
         image: node:16
         container_name: youtube-like-pwa
         command: yarn start:pwa
         working_dir: /usr/src/pwa
+        user: node
+        depends_on:
+            - mysql
         volumes:
             - $PWD:/usr/src/pwa
         ports:
             - $PWA_PORT:$PWA_PORT
+
+    mysql:
+        image: mysql:5.7
+        container_name: youtube-like-mysql
+        env_file: .env
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:5
+        container_name: youtube-like-phpmyadmin
+        depends_on:
+            - mysql
+        environment:
+            PMA_HOST: youtube-like-mysql
+            MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+        ports:
+            - $PMA_PORT:80
