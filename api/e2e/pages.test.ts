@@ -4,99 +4,75 @@ import { EMPTY_NAME, UNAUTHORIZED } from '../src/utils/http-messages'
 
 describe('pages (REST)', () => {
     describe('Can create a page', () => {
-        it('Cannot create a page as signed out', (done) => {
-            request(app.callback())
+        it('Cannot create a page as signed out', async () => {
+            const { body } = await request(app.callback())
                 .post('/pages')
                 .send()
-                .expect(401)
-                .then(({ body }) => {
-                    expect(body.message).toBe(UNAUTHORIZED)
-                    done()
-                })
+                .expect(401);
+            expect(body.message).toBe(UNAUTHORIZED)
         })
 
-        it('Cannot create a page without name', (done) => {
-            request(app.callback())
+        it('Cannot create a page without name', async () => {
+            await request(app.callback())
                 .post('/accounts')
                 .send({
                     email: 'test@test.com',
                     password: '$testtest',
-                })
-                .then(() => {
-                    request(app.callback())
-                        .post('/auth')
-                        .send({
-                            email: 'test@test.com',
-                            password: '$testtest',
-                        })
-                        .then(({ body }) => {
-                            request(app.callback())
-                                .post('/pages')
-                                .set('Authorization', `Bearer ${body.data.accessToken}`)
-                                .send()
-                                .expect(422)
-                                .then(({ body }) => {
-                                    expect(body.message).toBe(EMPTY_NAME)
-                                    done()
-                                })
-                        })
-                })
+                });
+            const { body: { data: { accessToken } } } = await request(app.callback())
+                .post('/auth')
+                .send({
+                    email: 'test@test.com',
+                    password: '$testtest',
+                });
+            const { body } = await request(app.callback())
+                .post('/pages')
+                .set('Authorization', `Bearer ${accessToken}`)
+                .send()
+                .expect(422);
+            expect(body.message).toBe(EMPTY_NAME)
         })
 
-        it('Cannot create a page with empty name', (done) => {
-            request(app.callback())
+        it('Cannot create a page with empty name', async () => {
+            await request(app.callback())
                 .post('/accounts')
                 .send({
                     email: 'test@test.com',
                     password: '$testtest',
-                })
-                .then(() => {
-                    request(app.callback())
-                        .post('/auth')
-                        .send({
-                            email: 'test@test.com',
-                            password: '$testtest',
-                        })
-                        .then(({ body }) => {
-                            request(app.callback())
-                                .post('/pages')
-                                .set('Authorization', `Bearer ${body.data.accessToken}`)
-                                .send({ name: '' })
-                                .expect(422)
-                                .then(({ body }) => {
-                                    expect(body.message).toBe(EMPTY_NAME)
-                                    done()
-                                })
-                        })
-                })
+                });
+            const { body: { data: { accessToken } } } = await request(app.callback())
+                .post('/auth')
+                .send({
+                    email: 'test@test.com',
+                    password: '$testtest',
+                });
+            const { body } = await request(app.callback())
+                .post('/pages')
+                .set('Authorization', `Bearer ${accessToken}`)
+                .send({ name: '' })
+                .expect(422);
+            expect(body.message).toBe(EMPTY_NAME)
         })
 
-        it('Can create a page with a name', (done) => {
-            request(app.callback())
+        it('Can create a page with a name', async () => {
+            await request(app.callback())
                 .post('/accounts')
                 .send({
                     email: 'test@test.com',
                     password: '$testtest',
-                })
-                .then(() => {
-                    request(app.callback())
-                        .post('/auth')
-                        .send({
-                            email: 'test@test.com',
-                            password: '$testtest',
-                        })
-                        .then(({ body }) => {
-                            request(app.callback())
-                                .post('/pages')
-                                .set('Authorization', `Bearer ${body.data.accessToken}`)
-                                .send({ name: 'My name' })
-                                .expect(201)
-                                .then(({ body }) => {
-                                    expect(body.data.uid).toBeDefined()
-                                    done()
-                                })
-                        })
-                })
+                });
+            const { body: { data: { accessToken } } } = await request(app.callback())
+                .post('/auth')
+                .send({
+                    email: 'test@test.com',
+                    password: '$testtest',
+                });
+            const { body } = await request(app.callback())
+                .post('/pages')
+                .set('Authorization', `Bearer ${accessToken}`)
+                .send({ name: 'My name' })
+                .expect(201)
+            expect(body.data.uid).toBeDefined()
         })
     })
 
