@@ -3,13 +3,14 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
-        "build:api": "rm -rf dist && tsc -p ./api/tsconfig.build.json",
+        "build:api": "rm -rf dist && tsc -p api",
         "format": "prettier --write .",
-        "start:api": "nodemon api/main.ts",
-        "migrate:up": "knex migrate:latest",
-        "migrate:down": "knex migrate:down",
-        "start:pwa": "vite",
-        "test": "jest"
+        "migrate:up": "knex migrate:latest --knexfile ./api/src/config/knexfile.ts",
+        "migrate:down": "knex migrate:down --knexfile ./api/src/config/knexfile.ts",
+        "serve:api": "nodemon",
+        "serve:pwa": "vite",
+        "test": "jest api",
+        "test:watch": "jest api --watchAll --verbose"
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.17.9",

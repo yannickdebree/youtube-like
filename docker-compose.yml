@@ -2,15 +2,12 @@ version: '3'
 
 services:
     api:
-        build:
-            context: .
-            dockerfile: api.Dockerfile
+        image: node:16-alpine
         container_name: youtube-like-api
-        networks:
-            - youtube-like-network
-        command: dockerize -wait tcp://mysql:3306 -timeout 60s yarn start:api
+        command: yarn serve:api
         working_dir: /usr/src/api
         user: node
+        env_file: .env
         depends_on:
             - mysql
         volumes:
@@ -19,32 +16,26 @@ services:
             - $API_PORT:$API_PORT
 
     pwa:
-        image: node:16
+        image: node:16-alpine
         container_name: youtube-like-pwa
-        networks:
-            - youtube-like-network
-        command: yarn start:pwa
+        command: yarn serve:pwa
         working_dir: /usr/src/pwa
         user: node
         depends_on:
             - mysql
         volumes:
-            - $PWD:/usr/srcnew/pwa
+            - $PWD:/usr/src/pwa
         ports:
             - $PWA_PORT:3000
 
     mysql:
         image: mysql:5.7
         container_name: youtube-like-mysql
-        networks:
-            - youtube-like-network
         env_file: .env
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:5
         container_name: youtube-like-phpmyadmin
-        networks:
-            - youtube-like-network
         depends_on:
             - mysql
         environment:
@@ -52,7 +43,3 @@ services:
             MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
         ports:
             - $PMA_PORT:80
-
-networks:
-    youtube-like-network:
-        driver: bridge

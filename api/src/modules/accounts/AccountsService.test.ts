@@ -1,7 +1,7 @@
 import knex from 'knex';
 import 'reflect-metadata';
 import Container from 'typedi';
-import config from '../../../knexfile';
+import config from '../../config/knexfile';
 import { Email } from '../../domain';
 import { NODE_ENV } from '../../utils/environment';
 import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION } from '../../utils/services-tokens';
@@ -9,7 +9,7 @@ import { AccountsService } from './AccountsService';
 import { CreateAccountDTO } from './CreateAccountDTO';
 import { KnexAccountsRepository } from './repositories';
 
-describe(AccountsService.name, () => {
+describe.skip(AccountsService.name, () => {
     Container.set(KNEX_CONNECTION, knex(config[NODE_ENV]));
     Container.set(ACCOUNTS_REPOSITORY, Container.get(KnexAccountsRepository));
 

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    api:
+        image: node:16-alpine
+        working_dir: /usr/src/api
+        environment:
+            NODE_ENV: production
+        volumes:
+            - $PWD/dist/api:/usr/src/api
+        command: node main.js
+        ports:
+            - ${API_PORT}:3000

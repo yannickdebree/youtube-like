@@ -1,10 +1,10 @@
 import knex from "knex";
 import Container from "typedi";
-import config from '../../knexfile';
 import { FakeAccountsRepository, FakeVideosRepository, KnexAccountsRepository } from "../modules";
 import { FakePagesRepository } from "../modules/pages/FakePagesRepository";
 import { NODE_ENV } from "../utils/environment";
 import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION, PAGES_REPOSITORY, VIDEOS_REPOSITORY } from "../utils/services-tokens";
+import config from './knexfile';
 
 export function declareProviders() {
     if (NODE_ENV === "test") {

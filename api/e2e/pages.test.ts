@@ -2,7 +2,7 @@ import request from 'supertest'
 import app from '../src/app'
 import { EMPTY_NAME, UNAUTHORIZED } from '../src/utils/http-messages'
 
-describe.skip('pages (REST)', () => {
+describe('pages (REST)', () => {
     describe('Can create a page', () => {
         it('Cannot create a page as signed out', async () => {
             const { body } = await request(app.callback())

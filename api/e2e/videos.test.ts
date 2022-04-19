@@ -3,7 +3,7 @@ import request from 'supertest';
 import app from '../src/app';
 import { EMPTY_VIDEO_SOURCE, UNAUTHORIZED } from '../src/utils/http-messages';
 
-describe.skip('videos (REST)', () => {
+describe('videos (REST)', () => {
     describe("Can upload video", () => {
         describe('Without required infos', () => {
             it("Cannot upload video with sign out", async () => {

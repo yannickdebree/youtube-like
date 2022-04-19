@@ -12,20 +12,24 @@ node_modules/time: yarn.lock
 # Containers shells
 .PHONY: shell-api
 shell-api:
-	$(dr) --no-deps api bash
+	$(dr) --no-deps api ash
 
 .PHONY: shell-pwa
 shell-pwa:
-	$(dr) --no-deps pwa bash
+	$(dr) --no-deps pwa ash
 
 # Utils (test, format)
 .PHONY: test
-test:
+test: migrate
 	$(dr) api yarn test
 
 .PHONY: format
 format:
 	$(dr) api yarn format
+
+.PHONY: migrate
+migrate: node_modules/time
+	$(dr) api yarn migrate:up
 
 .PHONY: build
 build: node_modules/time
@@ -33,7 +37,7 @@ build: node_modules/time
 
 # Containers cluster managment
 .PHONY: serve
-serve:
+serve: migrate
 	$(dc) up
 
 .PHONY: stop

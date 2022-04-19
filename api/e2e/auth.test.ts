@@ -7,7 +7,7 @@ import {
     UNKNOWN_SIGN_IN_METHOD
 } from '../src/utils/http-messages'
 
-describe.skip('auth (REST)', () => {
+describe('auth (REST)', () => {
     describe('Can sign in', () => {
         describe('Without correct infos', () => {
             it('Cannot sign in with password and without email', async () => {
