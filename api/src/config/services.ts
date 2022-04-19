@@ -1,7 +1,6 @@
 import knex from "knex";
 import Container from "typedi";
-import { FakeAccountsRepository, FakeVideosRepository, KnexAccountsRepository } from "../modules";
-import { FakePagesRepository } from "../modules/pages/FakePagesRepository";
+import { FakeAccountsRepository, FakePagesRepository, FakeVideosRepository, KnexAccountsRepository } from "../modules";
 import { NODE_ENV } from "../utils/environment";
 import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION, PAGES_REPOSITORY, VIDEOS_REPOSITORY } from "../utils/services-tokens";
 import config from './knexfile';

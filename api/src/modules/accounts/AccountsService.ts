@@ -1,5 +1,6 @@
 import { Inject, Service } from 'typedi';
-import { Account, AccountsRepository, Email } from '../../domain';
+import { v4 as uuid } from 'uuid';
+import { Account, AccountsRepository, Email, Uid } from '../../domain';
 import { EmailEvenUsedError } from '../../utils/errors';
 import { ACCOUNTS_REPOSITORY } from '../../utils/services-tokens';
 import { CreateAccountDTO } from './CreateAccountDTO';
@@ -26,6 +27,9 @@ export class AccountsService {
 
         // TODO: Encrypt password with hashing function
         const account = new Account(email, password);
+
+        const uid = new Uid(uuid());
+        account.setUid(uid);
 
         return this.accountsRepository.save(account);
     }

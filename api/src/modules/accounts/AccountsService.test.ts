@@ -9,7 +9,7 @@ import { AccountsService } from './AccountsService';
 import { CreateAccountDTO } from './CreateAccountDTO';
 import { KnexAccountsRepository } from './repositories';
 
-describe.skip(AccountsService.name, () => {
+describe(AccountsService.name, () => {
     Container.set(KNEX_CONNECTION, knex(config[NODE_ENV]));
     Container.set(ACCOUNTS_REPOSITORY, Container.get(KnexAccountsRepository));
 

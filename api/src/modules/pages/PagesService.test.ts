@@ -3,8 +3,8 @@ import Container from 'typedi'
 import { Account, Email, Password } from '../../domain'
 import { PAGES_REPOSITORY } from '../../utils/services-tokens'
 import { CreatePageDTO } from './CreatePageDTO'
-import { FakePagesRepository } from './FakePagesRepository'
 import { PagesService } from './PagesService'
+import { FakePagesRepository } from './repositories'
 
 describe.skip(PagesService.name, () => {
     Container.set(PAGES_REPOSITORY, new FakePagesRepository());

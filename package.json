@@ -5,8 +5,9 @@
     "scripts": {
         "build:api": "rm -rf dist && tsc -p api",
         "format": "prettier --write .",
-        "migrate:up": "knex migrate:latest --knexfile ./api/src/config/knexfile.ts",
-        "migrate:down": "knex migrate:down --knexfile ./api/src/config/knexfile.ts",
+        "knex": "knex --knexfile ./api/src/config/knexfile.ts",
+        "migrate:up": "yarn knex migrate:latest",
+        "migrate:down": "yarn knex migrate:down",
         "serve:api": "nodemon",
         "serve:pwa": "vite",
         "test": "jest api",
