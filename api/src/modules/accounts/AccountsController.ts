@@ -44,6 +44,7 @@ export class AccountsController {
                     },
                 })
             }
+            throw err;
         }
     }
 }

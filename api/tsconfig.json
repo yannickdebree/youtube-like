@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES2022",
         "outDir": "../dist/api",
         "esModuleInterop": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
     },
     "exclude": [
-        "./e2e/*",
-        "*.test.ts",
-        "../knexfile.ts"
+        "**/*.test.ts"
     ]
 }

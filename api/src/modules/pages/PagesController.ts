@@ -26,6 +26,7 @@ export class PagesController {
                     body: { message: EMPTY_NAME },
                 })
             }
+            throw err;
         }
     }
 }

@@ -38,6 +38,7 @@ export class VideosController {
             if (err instanceof EmptyVideoSourceError) {
                 return new Response({ status: 422, body: { message: EMPTY_VIDEO_SOURCE } })
             }
+            throw err;
         }
     }
 }

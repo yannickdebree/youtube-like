@@ -13,8 +13,8 @@ function accountToRow(account: Account) {
     } as AccountDatabaseRow
 }
 
-export function rowToAccount({ uid, email }: AccountDatabaseRow) {
-    const account = new Account(new Email(email), new Password("************"));
+export function rowToAccount({ uid, email, password }: AccountDatabaseRow) {
+    const account = new Account(new Email(email), new Password(password));
     account.setUid(new Uid(uid));
     return account;
 }

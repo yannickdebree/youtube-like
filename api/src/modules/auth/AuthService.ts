@@ -12,6 +12,7 @@ export class AuthService {
         const email = dto.email
         if (!!email) {
             const accountByEmail = await this.accountsService.findByEmail(email)
+
             // TODO: compare passwords with hashing function
             if (
                 accountByEmail?.getPassword()?.getValue() ===

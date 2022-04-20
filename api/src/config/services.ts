@@ -1,5 +1,6 @@
+
 import knex from "knex";
-import Container from "typedi";
+import Container from 'typedi';
 import { FakeAccountsRepository, FakePagesRepository, FakeVideosRepository, KnexAccountsRepository, KnexPagesRepository } from "../modules";
 import { KnexVideosRepository } from "../modules/videos/repositories/KnexVideosRepository";
 import { NODE_ENV } from "../utils/environment";

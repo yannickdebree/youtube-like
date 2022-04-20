@@ -7,8 +7,7 @@ import { declareProviders } from './services';
 
 declareProviders();
 
-const controllerRunner = Container.get(ControllerResolver)
-
+const controllerResolver = Container.get(ControllerResolver)
 const accountsController = Container.get(AccountsController)
 const authController = Container.get(AuthController)
 const pagesController = Container.get(PagesController);
@@ -17,17 +16,17 @@ const videosController = Container.get(VideosController);
 export const router = new Router()
     .post(
         '/accounts',
-        controllerRunner.run((params) => accountsController.create(params))
+        controllerResolver.run((params) => accountsController.create(params))
     )
     .post(
         '/auth',
-        controllerRunner.run((params) => authController.signIn(params))
+        controllerResolver.run((params) => authController.signIn(params))
     )
     .post(
         '/pages',
-        controllerRunner.run(isAccountAuthenticatedGuard((params) => pagesController.create(params)))
-)
+        controllerResolver.run(isAccountAuthenticatedGuard((params) => pagesController.create(params)))
+    )
     .post(
         '/pages/:uid/videos',
-        controllerRunner.run(isAccountAuthenticatedGuard(params => videosController.upload(params)))
+        controllerResolver.run(isAccountAuthenticatedGuard(params => videosController.upload(params)))
     );

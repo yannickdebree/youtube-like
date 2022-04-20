@@ -56,6 +56,7 @@ export class AuthController {
                     },
                 })
             }
+            throw err;
         }
     }
 }
