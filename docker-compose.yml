@@ -23,7 +23,7 @@ services:
         user: node
         env_file: .env
         depends_on:
-            - mysql
+            - api
         volumes:
             - $PWD:/usr/src/pwa
         ports:

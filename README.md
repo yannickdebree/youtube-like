@@ -19,7 +19,7 @@ The deployment process needs an activated Docker Swarm cluster.
 To export .env variables, run this following command :
 
 ```bash
-export $(cat .env | sed -e /^$/d -e /^#/d | xargs)
+./export-env.sh
 ```
 
 The _*stack.yml*_ file is used to deploy or update swarm like this :

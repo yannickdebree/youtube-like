@@ -9,7 +9,8 @@ const commonConfig = {
 
 const config = {
   development: commonConfig,
-  test: commonConfig
+  test: commonConfig,
+  production: commonConfig
 } as { [key: string]: Knex.Config };
 
 module.exports = config;

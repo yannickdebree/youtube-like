@@ -1,0 +1,1 @@
+export $(cat .env | sed -e /^$/d -e /^#/d | xargs)

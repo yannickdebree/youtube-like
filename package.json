@@ -40,6 +40,7 @@
     "dependencies": {
         "@koa/cors": "^3.3.0",
         "axios": "^0.26.1",
+        "cypress": "^9.5.4",
         "dotenv": "^16.0.0",
         "jsonwebtoken": "^8.5.1",
         "knex": "^1.0.7",
