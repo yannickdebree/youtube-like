@@ -7,7 +7,7 @@ import { ACCOUNTS_REPOSITORY, KNEX_CONNECTION, PAGES_REPOSITORY, VIDEOS_REPOSITO
 import config from './knex';
 
 export function declareProviders(env = NODE_ENV) {
-    if (env === "test") {
+    if (env === "test" || env === "test_watch") {
         Container.set(ACCOUNTS_REPOSITORY, new FakeAccountsRepository());
         Container.set(VIDEOS_REPOSITORY, new FakeVideosRepository());
         Container.set(PAGES_REPOSITORY, new FakePagesRepository());

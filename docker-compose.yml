@@ -2,9 +2,11 @@ version: '3'
 
 services:
     api:
-        image: node:16-alpine
+        build:
+            context: .
+            dockerfile: api.Dockerfile
         container_name: youtube-like-api
-        command: yarn serve:api
+        command: dockerize -wait tcp://youtube-like-mysql:3306 -timeout 60s yarn serve:api
         working_dir: /usr/src/api
         user: node
         env_file: .env
@@ -12,6 +14,8 @@ services:
             - mysql
         volumes:
             - $PWD:/usr/src/api
+        ports:
+            - $API_PORT:$API_PORT
 
     pwa:
         image: node:16-alpine

@@ -1,13 +1,12 @@
 import 'reflect-metadata';
 import Container from 'typedi';
-import { declareProviders } from '../../config/services';
 import { Email } from '../../domain';
-import { NODE_ENV } from '../../utils/environment';
+import { declareProvidersForTestServices } from '../../utils/providers';
 import { AccountsService } from './AccountsService';
 import { CreateAccountDTO } from './CreateAccountDTO';
 
 describe(AccountsService.name, () => {
-    declareProviders(NODE_ENV === "development" ? "test" : "test_with_real_database");
+    declareProvidersForTestServices();
     const accountsService = Container.get(AccountsService);
 
     it('Cannot get unpersisted data', async () => {

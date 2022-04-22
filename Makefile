@@ -35,7 +35,7 @@ format:
 
 .PHONY: migrate
 migrate: node_modules/time
-	$(dr) api yarn migrate:up
+	$(dr) api dockerize -wait tcp://youtube-like-mysql:3306 -timeout 60s yarn migrate:up
 
 ## Containers cluster managment
 .PHONY: serve

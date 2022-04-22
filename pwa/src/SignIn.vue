@@ -38,7 +38,7 @@ export default {
     methods: {
         checkValidation($event: SubmitEvent) {
             $event.preventDefault()
-            axios.post('http://0.0.0.0:3000/auth', {
+            axios.post('http://localhost:3000/auth', {
                 email: this.email,
                 password: this.password
             })

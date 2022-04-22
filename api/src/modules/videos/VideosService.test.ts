@@ -1,8 +1,7 @@
 import 'reflect-metadata'
 import Container from 'typedi'
-import { declareProviders } from '../../config/services'
 import { Email } from '../../domain'
-import { NODE_ENV } from '../../utils/environment'
+import { declareProvidersForTestServices } from '../../utils/providers'
 import { AccountsService } from '../accounts'
 import { CreateAccountDTO } from '../accounts/CreateAccountDTO'
 import { PagesService } from '../pages'
@@ -11,7 +10,7 @@ import { UploadVideoDTO } from './UploadVideoDTO'
 import { VideosService } from './VideosService'
 
 describe(VideosService.name, () => {
-    declareProviders(NODE_ENV === "development" ? "test" : "test_with_real_database");
+    declareProvidersForTestServices();
 
     const accountsService = Container.get(AccountsService);
     const pagesService = Container.get(PagesService);

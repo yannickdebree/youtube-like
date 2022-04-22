@@ -1,5 +1,6 @@
 import request from 'supertest'
 import app from '../src/app'
+import { NODE_ENV } from '../src/utils/environment';
 import {
     EMAIl_EVEN_USED,
     EMAIL_FORMAT_ERROR,

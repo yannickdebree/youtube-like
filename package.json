@@ -12,7 +12,7 @@
         "serve:api": "nodemon",
         "serve:pwa": "vite",
         "test": "jest api",
-        "test:watch": "NODE_ENV=development jest api --watchAll --verbose"
+        "test:watch": "NODE_ENV=test_watch jest api --watchAll --verbose"
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.17.9",

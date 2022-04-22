@@ -94,15 +94,15 @@ describe('auth (REST)', () => {
                         email: 'test@test.com',
                         password: '$testtest',
                     });
-                const { body } = await request(app.callback())
+                const { body: { data } } = await request(app.callback())
                     .post('/auth')
                     .send({
                         email: 'test@test.com',
                         password: '$testtest',
                     })
                     .expect(200);
-                expect(body.data.email).toBe('test@test.com')
-                expect(body.data.accessToken).toBeDefined()
+                expect(data.email).toBeUndefined();
+                expect(data.accessToken).toBeDefined()
             })
 
             it('Cannot sign in without equivalent data', async () => {

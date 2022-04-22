@@ -24,7 +24,7 @@ export class AuthService {
                     },
                     API_SECRET
                 )
-                return { email: email.getValue(), accessToken }
+                return { accessToken }
             }
         }
     }
