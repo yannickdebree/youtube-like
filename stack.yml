@@ -17,8 +17,6 @@ services:
         volumes:
             - $PWD:/usr/src/api
         command: node dist/api/main.js main.js
-        ports:
-            - ${API_PORT}:${API_PORT}
 
     pwa:
         image: httpd:alpine3.15

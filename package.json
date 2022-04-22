@@ -6,13 +6,13 @@
         "build:api": "rm -rf dist/api && tsc -p api",
         "build:pwa": "rm -rf dist/pwa && vite build",
         "format": "prettier --write .",
-        "knex": "knex --knexfile ./api/src/config/knexfile.ts",
+        "knex": "knex --knexfile ./api/src/config/knex.ts",
         "migrate:up": "yarn knex migrate:latest",
         "migrate:down": "yarn knex migrate:down",
         "serve:api": "nodemon",
         "serve:pwa": "vite",
         "test": "jest api",
-        "test:watch": "jest api --watchAll --verbose"
+        "test:watch": "NODE_ENV=development jest api --watchAll --verbose"
     },
     "devDependencies": {
         "@babel/plugin-proposal-decorators": "^7.17.9",

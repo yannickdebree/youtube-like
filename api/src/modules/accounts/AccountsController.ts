@@ -17,7 +17,7 @@ export class AccountsController {
     async create({ context }: ControllerParams) {
         try {
             const dto = new CreateAccountDTO(context.request.body)
-            await this.accountsService.create(dto)
+            await this.accountsService.create(dto);
             return new Response({ status: 201 })
         } catch (err) {
             if (err instanceof EmailFormatError) {

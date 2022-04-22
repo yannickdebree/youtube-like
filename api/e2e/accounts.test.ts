@@ -23,7 +23,7 @@ describe('accounts (REST)', () => {
                 const { body } = await request(app.callback())
                     .post('/accounts')
                     .send({
-                        email: 'test@test.com',
+                        email: 'accounts@test.com',
                     })
                     .expect(422);
                 expect(body.message).toBe(PASSWORD_FORMAT_ERROR)
@@ -44,7 +44,7 @@ describe('accounts (REST)', () => {
                 const { body } = await request(app.callback())
                     .post('/accounts')
                     .send({
-                        email: 'test@test.com',
+                        email: 'accounts@test.com',
                         password: '',
                     })
                     .expect(422)
@@ -77,7 +77,7 @@ describe('accounts (REST)', () => {
                 const { body } = await request(app.callback())
                     .post('/accounts')
                     .send({
-                        email: 'test@test.com',
+                        email: 'accounts@test.com',
                         password: 'short',
                     })
                     .expect(422);
@@ -90,7 +90,7 @@ describe('accounts (REST)', () => {
                 await request(app.callback())
                     .post('/accounts')
                     .send({
-                        email: 'test@test.com',
+                        email: 'accounts@test.com',
                         password: '$testtest',
                     })
                     .expect(201)
@@ -100,7 +100,7 @@ describe('accounts (REST)', () => {
                 const { body } = await request(app.callback())
                     .post('/accounts')
                     .send({
-                        email: 'test@test.com',
+                        email: 'accounts@test.com',
                         password: '$testtest',
                     })
                     .expect(422);

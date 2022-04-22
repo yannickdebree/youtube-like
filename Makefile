@@ -1,7 +1,9 @@
 dc := docker-compose
 dr := $(dc) run --rm
 
-# Dependencies
+# DEVELOPMENT
+
+## Dependencies
 .PHONY: install
 install: node_modules/time
 
@@ -9,7 +11,7 @@ node_modules/time: yarn.lock
 	$(dr) --no-deps api yarn
 	touch node_modules/time
 
-# Containers shells
+## Containers shells
 .PHONY: shell-api
 shell-api:
 	$(dr) --no-deps api ash
@@ -18,10 +20,14 @@ shell-api:
 shell-pwa:
 	$(dr) --no-deps pwa ash
 
-# Utils (test, format)
+## Utils (test, format)
 .PHONY: test
 test: migrate
 	$(dr) api yarn test
+
+.PHONY: test-watch
+test-watch: migrate
+	$(dr) api yarn test:watch
 
 .PHONY: format
 format:
@@ -31,12 +37,7 @@ format:
 migrate: node_modules/time
 	$(dr) api yarn migrate:up
 
-.PHONY: build
-build: node_modules/time
-	$(dr) --no-deps api yarn build:api
-	$(dr) --no-deps pwa yarn build:pwa
-
-# Containers cluster managment
+## Containers cluster managment
 .PHONY: serve
 serve: migrate
 	$(dc) up
@@ -48,3 +49,19 @@ stop:
 .PHONY: clean
 clean:
 	$(dc) down --volumes
+
+# PRODUCTION
+
+.PHONY: build
+build: node_modules/time
+	$(dr) --no-deps api yarn build:api
+	$(dr) --no-deps pwa yarn build:pwa
+
+.PHONY: deploy
+deploy:
+	export $(cat ./.env | sed -e /^$/d -e /^#/d | xargs)
+	docker stack deploy -c stack.yml youtube-like
+
+.PHONY: undeploy
+undeploy:
+	docker stack rm youtube-like
