@@ -9,8 +9,8 @@ export class CreatePageDTO {
     public readonly name: string
     public readonly account: Account
 
-    constructor(body: CreatePageDTOParams) {
-        const { name, account } = body;
+    constructor(dto: CreatePageDTOParams) {
+        const { name, account } = dto;
         if (!name) {
             throw new EmptyNameError()
         }

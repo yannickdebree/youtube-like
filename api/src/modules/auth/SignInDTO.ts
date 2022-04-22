@@ -10,8 +10,8 @@ export class SignInDTO {
     public readonly email?: Email
     public readonly password?: Password
 
-    constructor(body: SignInDTOParams) {
-        const { email, password } = body;
+    constructor(dto: SignInDTOParams) {
+        const { email, password } = dto;
 
         // TODO: implement others sign-in methods check
         if (!email || !password) {

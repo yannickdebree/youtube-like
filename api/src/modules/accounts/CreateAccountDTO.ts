@@ -9,8 +9,8 @@ export class CreateAccountDTO {
     public readonly email: Email
     public readonly password: Password
 
-    constructor(body: CreateAccountDTOParams) {
-        const { email, password } = body;
+    constructor(dto: CreateAccountDTOParams) {
+        const { email, password } = dto;
         if (!email) {
             throw new EmailFormatError();
         }

@@ -1,5 +1,3 @@
-import { createApp } from 'vue';
-// @ts-ignore
-import App from './src/App.vue';
+import app from './src/app';
 
-createApp(App).mount("#root");
+app.mount("#root");

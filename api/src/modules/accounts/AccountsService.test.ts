@@ -7,6 +7,7 @@ import { CreateAccountDTO } from './CreateAccountDTO';
 
 describe(AccountsService.name, () => {
     declareProvidersForTestServices();
+
     const accountsService = Container.get(AccountsService);
 
     it('Cannot get unpersisted data', async () => {
@@ -31,4 +32,4 @@ describe(AccountsService.name, () => {
         expect(account.getEmail().isEquals(email)).toBe(true);
         expect(account.getPassword().getValue()).not.toBe(dto.password)
     });
-})
+});

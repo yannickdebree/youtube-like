@@ -14,15 +14,15 @@ describe(Account.name, () => {
 
     it('Can create a page', () => {
         new Page(account, 'Name')
-    })
+    });
 
     it('Can react to a video', () => {
-        const video = new Video(new Page(account, 'Name'), '/tmp')
+        const video = new Video(new Page(account, 'Name'), '/tmp/1.mp4')
         new Reaction(video, account, 'like')
-    })
+    });
 
     it('Can comment a video', () => {
-        const video = new Video(new Page(account, 'Name'), '/tmp')
+        const video = new Video(new Page(account, 'Name'), '/tmp/2.mp4')
 
         try {
             new VideoComment(video, account, '')
@@ -31,11 +31,11 @@ describe(Account.name, () => {
         }
 
         new VideoComment(video, account, 'This is a comment')
-    })
+    });
 
-    it.todo('Can react to a comment')
+    it.todo('Can react to a comment');
 
-    it.todo('Can reply to a comment')
+    it.todo('Can reply to a comment');
 
-    it.todo('Can react to a comment reply')
-})
+    it.todo('Can react to a comment reply');
+});

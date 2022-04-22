@@ -1,8 +1,8 @@
-import { Inject, Service } from 'typedi'
-import { v4 as uuid } from 'uuid'
-import { Uid, Video, VideosRepository } from '../../domain'
-import { VIDEOS_REPOSITORY } from '../../utils/services-tokens'
-import { UploadVideoDTO } from './UploadVideoDTO'
+import { Inject, Service } from 'typedi';
+import { Uid, Video, VideosRepository } from '../../domain';
+import { VIDEOS_REPOSITORY } from '../../utils/services-tokens';
+import { generateUid } from '../../utils/uid';
+import { UploadVideoDTO } from './UploadVideoDTO';
 
 @Service()
 export class VideosService {
@@ -27,9 +27,9 @@ export class VideosService {
             video.setDescription(description);
         }
 
-        const uid = new Uid(uuid())
+        const uid = new Uid(generateUid())
+        video.setUid(uid);
 
-        video.setUid(uid)
         await this.videosRepository.save(video);
 
         return uid

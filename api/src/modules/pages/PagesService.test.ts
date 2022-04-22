@@ -39,5 +39,5 @@ describe(PagesService.name, () => {
         expect(page.getUid()).toEqual(uid);
         expect(page.getName()).toBe(dto.name);
         expect(page.getAccount().getEmail().isEquals(email)).toBe(true);
-    })
-})
+    });
+});

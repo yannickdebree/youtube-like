@@ -6,13 +6,15 @@ import { router } from './config';
 
 const app = new Koa()
     .use(cors())
-    .use(koaBody({
+    .use(
+        koaBody({
         formidable: {
             uploadDir: 'upload',
             keepExtensions: true
         },
-        multipart: true,
-    }))
+            multipart: true
+        })
+    )
     .use(router.routes())
     .use(router.allowedMethods())
 

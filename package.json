@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "license": "MIT",
     "scripts": {
+        "postinstall": "cypress install",
         "build:api": "rm -rf dist/api && tsc -p api",
         "build:pwa": "rm -rf dist/pwa && vite build",
         "format": "prettier --write .",
@@ -11,7 +12,7 @@
         "migrate:down": "yarn knex migrate:down",
         "serve:api": "nodemon",
         "serve:pwa": "vite",
-        "test": "jest api",
+        "test": "jest api && cypress run",
         "test:watch": "NODE_ENV=test_watch jest api --watchAll --verbose"
     },
     "devDependencies": {
@@ -28,6 +29,7 @@
         "@types/uuid": "^8.3.4",
         "@vitejs/plugin-vue": "^2.3.1",
         "babel-plugin-transform-typescript-metadata": "^0.3.2",
+        "cypress": "^9.5.4",
         "jest": "^27.5.1",
         "nodemon": "^2.0.15",
         "prettier": "^2.6.2",
@@ -40,7 +42,6 @@
     "dependencies": {
         "@koa/cors": "^3.3.0",
         "axios": "^0.26.1",
-        "cypress": "^9.5.4",
         "dotenv": "^16.0.0",
         "jsonwebtoken": "^8.5.1",
         "knex": "^1.0.7",

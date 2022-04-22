@@ -26,9 +26,11 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios';
+import axios from 'axios'
+import { API_ENDPOINT } from '../utils/providers'
 
 export default {
+    inject: [API_ENDPOINT],
     data() {
         return {
             email: null,
@@ -38,9 +40,9 @@ export default {
     methods: {
         checkValidation($event: SubmitEvent) {
             $event.preventDefault()
-            axios.post('http://localhost:3000/auth', {
+            axios.post(`${this.API_ENDPOINT}/auth`, {
                 email: this.email,
-                password: this.password
+                password: this.password,
             })
         },
     },

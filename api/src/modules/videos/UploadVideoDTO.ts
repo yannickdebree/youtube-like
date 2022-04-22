@@ -13,8 +13,8 @@ export class UploadVideoDTO {
     public readonly name?: string;
     public readonly description?: string;
 
-    constructor(body: UploadVideoDTOParams) {
-        const { path, page, name, description } = body;
+    constructor(dto: UploadVideoDTOParams) {
+        const { path, page, name, description } = dto;
         this.path = path;
         this.page = page;
         this.name = name;

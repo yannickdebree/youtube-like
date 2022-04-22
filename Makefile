@@ -53,8 +53,14 @@ clean:
 # PRODUCTION
 
 .PHONY: build
-build: node_modules/time
-	$(dr) --no-deps api yarn build:api
+build: build-api build-pwa
+
+.PHONY: build-api
+build-api: node_modules/time
+	$(dr) --no-deps pwa yarn build:api
+
+.PHONY: build-pwa
+build-pwa: node_modules/time
 	$(dr) --no-deps pwa yarn build:pwa
 
 .PHONY: deploy
