@@ -26,12 +26,12 @@ test: migrate
 	$(dr) api yarn test
 
 .PHONY: test-watch
-test-watch: migrate
-	$(dr) api yarn test:watch
+test-watch:
+	$(dr) --no-deps api yarn test:watch
 
 .PHONY: format
 format:
-	$(dr) api yarn format
+	$(dr) --no-deps api yarn format
 
 .PHONY: migrate
 migrate: node_modules/time

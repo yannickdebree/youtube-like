@@ -3,9 +3,9 @@ import { Password } from './Password'
 import { Uid } from './Uid'
 
 export class Account {
-    private uid?: Uid;
+    private uid?: Uid
 
-    constructor(private email: Email, private password: Password) { }
+    constructor(private email: Email, private password: Password) {}
 
     getEmail() {
         return this.email
@@ -16,10 +16,10 @@ export class Account {
     }
 
     getUid() {
-        return this.uid;
+        return this.uid
     }
 
     setUid(uid: Uid) {
-        this.uid = uid;
+        this.uid = uid
     }
 }

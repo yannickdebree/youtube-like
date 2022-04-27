@@ -5,19 +5,19 @@ import { EmailEvenUsedError } from '../../utils/errors'
 import {
     EMAIl_EVEN_USED,
     EMAIL_FORMAT_ERROR,
-    PASSWORD_FORMAT_ERROR
+    PASSWORD_FORMAT_ERROR,
 } from '../../utils/http-messages'
 import { AccountsService } from './AccountsService'
 import { CreateAccountDTO } from './CreateAccountDTO'
 
 @Service()
 export class AccountsController {
-    constructor(public accountsService: AccountsService) { }
+    constructor(public accountsService: AccountsService) {}
 
     async create({ context }: ControllerParams) {
         try {
             const dto = new CreateAccountDTO(context.request.body)
-            await this.accountsService.create(dto);
+            await this.accountsService.create(dto)
             return new Response({ status: 201 })
         } catch (err) {
             if (err instanceof EmailFormatError) {
@@ -44,7 +44,7 @@ export class AccountsController {
                     },
                 })
             }
-            throw err;
+            throw err
         }
     }
 }

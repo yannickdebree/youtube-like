@@ -1,9 +1,9 @@
-import { UidFormatError } from "./errors"
+import { UidFormatError } from './errors'
 
 export class Uid {
     constructor(private readonly value: string) {
         if (value.length === 0) {
-            throw new UidFormatError();
+            throw new UidFormatError()
         }
     }
 

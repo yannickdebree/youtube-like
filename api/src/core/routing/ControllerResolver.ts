@@ -10,11 +10,9 @@ import { Response } from './Response'
 
 @Service()
 export class ControllerResolver {
-    constructor(private readonly accountsService: AccountsService) { }
+    constructor(private readonly accountsService: AccountsService) {}
 
-    run<T>(
-        controllerHandler: ControllerHandler<T>
-    ) {
+    run<T>(controllerHandler: ControllerHandler<T>) {
         return async (context: Context, next: Next) => {
             let response = new Response({ status: 500 })
 

@@ -6,7 +6,7 @@ import { SignInDTO } from './SignInDTO'
 
 @Service()
 export class AuthService {
-    constructor(private readonly accountsService: AccountsService) { }
+    constructor(private readonly accountsService: AccountsService) {}
 
     async signIn(dto: SignInDTO) {
         const email = dto.email

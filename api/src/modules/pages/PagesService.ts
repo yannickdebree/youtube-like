@@ -1,15 +1,9 @@
-import { Inject, Service } from 'typedi'
 import { Page, PagesRepository, Uid } from '../../domain'
-import { PAGES_REPOSITORY } from '../../utils/services-tokens'
 import { generateUid } from '../../utils/uid'
 import { CreatePageDTO } from './CreatePageDTO'
 
-@Service()
 export class PagesService {
-    constructor(
-        @Inject(PAGES_REPOSITORY)
-        private readonly pagesRepository: PagesRepository
-    ) { }
+    constructor(private readonly pagesRepository: PagesRepository) {}
 
     private pages = new Array<Page>()
 
@@ -24,7 +18,7 @@ export class PagesService {
         const uid = new Uid(generateUid())
 
         page.setUid(uid)
-        await this.pagesRepository.save(page);
+        await this.pagesRepository.save(page)
 
         return uid
     }

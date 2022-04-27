@@ -1,8 +1,13 @@
-import { Email, EmailFormatError, Password, PasswordFormatError } from '../../domain';
+import {
+    Email,
+    EmailFormatError,
+    Password,
+    PasswordFormatError,
+} from '../../domain'
 
 interface CreateAccountDTOParams {
-    email: string;
-    password: string;
+    email: string
+    password: string
 }
 
 export class CreateAccountDTO {
@@ -10,9 +15,9 @@ export class CreateAccountDTO {
     public readonly password: Password
 
     constructor(dto: CreateAccountDTOParams) {
-        const { email, password } = dto;
+        const { email, password } = dto
         if (!email) {
-            throw new EmailFormatError();
+            throw new EmailFormatError()
         }
         if (!password) {
             throw new PasswordFormatError()

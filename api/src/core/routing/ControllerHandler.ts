@@ -1,4 +1,6 @@
-import { ControllerParams } from "./ControllerParams";
-import { Response } from "./Response";
+import { ControllerParams } from './ControllerParams'
+import { Response } from './Response'
 
-export type ControllerHandler<T> = (params: ControllerParams) => Promise<Response<T> | undefined> | Response<T> | undefined
+export type ControllerHandler<T> = (
+    params: ControllerParams
+) => Promise<Response<T> | undefined> | Response<T> | undefined

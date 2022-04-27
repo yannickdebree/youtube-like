@@ -1,17 +1,22 @@
-import Router from 'koa-router';
-import Container from 'typedi';
-import { ControllerResolver } from '../core/routing/ControllerResolver';
-import { AccountsController, AuthController, PagesController, VideosController } from '../modules';
-import { isAccountAuthenticatedGuard } from './guards';
-import { declareProviders } from './services';
+import Router from 'koa-router'
+import Container from 'typedi'
+import { ControllerResolver } from '../core/routing/ControllerResolver'
+import {
+    AccountsController,
+    AuthController,
+    PagesController,
+    VideosController,
+} from '../modules'
+import { isAccountAuthenticatedGuard } from './guards'
+import { declareProviders } from './services'
 
-declareProviders();
+declareProviders()
 
 const controllerResolver = Container.get(ControllerResolver)
 const accountsController = Container.get(AccountsController)
 const authController = Container.get(AuthController)
-const pagesController = Container.get(PagesController);
-const videosController = Container.get(VideosController);
+const pagesController = Container.get(PagesController)
+const videosController = Container.get(VideosController)
 
 export const router = new Router()
     .post(
@@ -24,9 +29,17 @@ export const router = new Router()
     )
     .post(
         '/pages',
-        controllerResolver.run(isAccountAuthenticatedGuard((params) => pagesController.create(params)))
+        controllerResolver.run(
+            isAccountAuthenticatedGuard((params) =>
+                pagesController.create(params)
+            )
+        )
     )
     .post(
         '/pages/:uid/videos',
-        controllerResolver.run(isAccountAuthenticatedGuard(params => videosController.upload(params)))
-    );
+        controllerResolver.run(
+            isAccountAuthenticatedGuard((params) =>
+                videosController.upload(params)
+            )
+        )
+    )

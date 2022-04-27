@@ -1,1 +1,1 @@
-export * from './isAccountAuthenticatedGuard';
+export * from './isAccountAuthenticatedGuard'

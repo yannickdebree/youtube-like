@@ -4,7 +4,7 @@ import {
     EMAIL_FORMAT_ERROR,
     PASSWORD_FORMAT_ERROR,
     UNAUTHORIZED,
-    UNKNOWN_SIGN_IN_METHOD
+    UNKNOWN_SIGN_IN_METHOD,
 } from '../src/utils/http-messages'
 
 describe('auth (REST)', () => {
@@ -16,7 +16,7 @@ describe('auth (REST)', () => {
                     .send({
                         password: '$testtest',
                     })
-                    .expect(400);
+                    .expect(400)
                 expect(body.message).toBe(UNKNOWN_SIGN_IN_METHOD)
             })
 
@@ -26,7 +26,7 @@ describe('auth (REST)', () => {
                     .send({
                         email: 'test@test.com',
                     })
-                    .expect(400);
+                    .expect(400)
                 expect(body.message).toBe(UNKNOWN_SIGN_IN_METHOD)
             })
 
@@ -37,7 +37,7 @@ describe('auth (REST)', () => {
                         email: '',
                         password: '',
                     })
-                    .expect(400);
+                    .expect(400)
                 expect(body.message).toBe(UNKNOWN_SIGN_IN_METHOD)
             })
 
@@ -48,7 +48,7 @@ describe('auth (REST)', () => {
                         email: 'test@test.com',
                         password: '',
                     })
-                    .expect(400);
+                    .expect(400)
                 expect(body.message).toBe(UNKNOWN_SIGN_IN_METHOD)
             })
 
@@ -59,7 +59,7 @@ describe('auth (REST)', () => {
                         email: '',
                         password: '$testtest',
                     })
-                    .expect(400);
+                    .expect(400)
                 expect(body.message).toBe(UNKNOWN_SIGN_IN_METHOD)
             })
 
@@ -70,7 +70,7 @@ describe('auth (REST)', () => {
                         email: 'wrongEmail',
                         password: '$testtest',
                     })
-                    .expect(422);
+                    .expect(422)
                 expect(body.message).toBe(EMAIL_FORMAT_ERROR)
             })
 
@@ -81,44 +81,42 @@ describe('auth (REST)', () => {
                         email: 'test@test.com',
                         password: 'short',
                     })
-                    .expect(422);
+                    .expect(422)
                 expect(body.message).toBe(PASSWORD_FORMAT_ERROR)
             })
         })
 
         describe('With correct infos', () => {
             it('Can sign in with equivalent data', async () => {
-                await request(app.callback())
-                    .post('/accounts')
-                    .send({
-                        email: 'test@test.com',
-                        password: '$testtest',
-                    });
-                const { body: { data } } = await request(app.callback())
+                await request(app.callback()).post('/accounts').send({
+                    email: 'test@test.com',
+                    password: '$testtest',
+                })
+                const {
+                    body: { data },
+                } = await request(app.callback())
                     .post('/auth')
                     .send({
                         email: 'test@test.com',
                         password: '$testtest',
                     })
-                    .expect(200);
-                expect(data.email).toBeUndefined();
+                    .expect(200)
+                expect(data.email).toBeUndefined()
                 expect(data.accessToken).toBeDefined()
             })
 
             it('Cannot sign in without equivalent data', async () => {
-                await request(app.callback())
-                    .post('/accounts')
-                    .send({
-                        email: 'test@test.com',
-                        password: '$testtest',
-                    });
+                await request(app.callback()).post('/accounts').send({
+                    email: 'test@test.com',
+                    password: '$testtest',
+                })
                 const { body } = await request(app.callback())
                     .post('/auth')
                     .send({
                         email: 'test1@test.com',
                         password: '$testtest',
                     })
-                    .expect(401);
+                    .expect(401)
                 expect(body.message).toBe(UNAUTHORIZED)
             })
         })

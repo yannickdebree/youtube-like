@@ -1,3 +1,2 @@
-export * from './repositories';
-export * from './VideosController';
-
+export * from './repositories'
+export * from './VideosController'

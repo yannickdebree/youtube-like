@@ -16,11 +16,11 @@ export class Page {
     }
 
     getName() {
-        return this.name;
+        return this.name
     }
 
     getAccount() {
-        return this.account;
+        return this.account
     }
 
     setUid(uid: Uid) {

@@ -1,8 +1,8 @@
-import { Account, EmptyNameError } from '../../domain';
+import { Account, EmptyNameError } from '../../domain'
 
 interface CreatePageDTOParams {
-    name: string;
-    account: Account;
+    name: string
+    account: Account
 }
 
 export class CreatePageDTO {
@@ -10,7 +10,7 @@ export class CreatePageDTO {
     public readonly account: Account
 
     constructor(dto: CreatePageDTOParams) {
-        const { name, account } = dto;
+        const { name, account } = dto
         if (!name) {
             throw new EmptyNameError()
         }

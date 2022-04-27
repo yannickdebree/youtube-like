@@ -1,9 +1,9 @@
-import { Email, Password } from '../../domain';
-import { UnknowSignInMethodError } from '../../utils/errors';
+import { Email, Password } from '../../domain'
+import { UnknowSignInMethodError } from '../../utils/errors'
 
 interface SignInDTOParams {
-    email: string;
-    password: string;
+    email: string
+    password: string
 }
 
 export class SignInDTO {
@@ -11,7 +11,7 @@ export class SignInDTO {
     public readonly password?: Password
 
     constructor(dto: SignInDTOParams) {
-        const { email, password } = dto;
+        const { email, password } = dto
 
         // TODO: implement others sign-in methods check
         if (!email || !password) {

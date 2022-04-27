@@ -1,7 +1,5 @@
-import { createApp } from 'vue';
+import { createApp } from 'vue'
 // @ts-ignore
-import App from './components/App.vue';
-import { API_ENDPOINT as API_ENDPOINT_VALUE } from './utils/environment';
-import { API_ENDPOINT as API_ENDPOINT_KEY } from './utils/providers';
+import App from './components/App.vue'
 
-export default createApp(App).provide(API_ENDPOINT_KEY, API_ENDPOINT_VALUE);
+export default createApp(App)

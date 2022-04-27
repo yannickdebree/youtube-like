@@ -1,2 +1,2 @@
-export * from './FakeVideosRepository';
-export * from './KnexVideosRepository';
+export * from './FakeVideosRepository'
+export * from './KnexVideosRepository'
